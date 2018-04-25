@@ -1,0 +1,28 @@
+{
+  "name": "project2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hmdroh/project2.git"
+  },
+  "author": "Hamed, Clayton, Garret, Mikaela",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hmdroh/project2/issues"
+  },
+  "homepage": "https://github.com/hmdroh/project2#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mysql2": "^1.5.3",
+    "path": "^0.12.7",
+    "sequelize": "^4.37.6"
+  }
+}
