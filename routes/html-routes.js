@@ -15,8 +15,33 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
-    res.render("index");
+    res.render("home");
     // res.sendFile(path.join(__dirname, "../public/blog.html"));
+  });
+
+  app.get("/signup", function(req, res) {
+    res.render("signup");
+    
+  });
+
+  app.get("/login", function(req, res) {
+    res.render("login");
+   
+  });
+
+  app.get("/success", function(req, res) {
+    res.render("success");
+   
+  });
+
+  app.get("/activities", function(req, res) {
+    res.render("activities");
+   
+  });
+
+  app.get("/eats", function(req, res) {
+    res.render("eats");
+   
   });
 
   // cms route loads cms.html
