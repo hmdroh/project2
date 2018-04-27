@@ -60,6 +60,19 @@ module.exports = function(app) {
   });
 
   app.get("/success", function(req, res) {
+
+    // if(!req.params.user || !req.params.pass){
+    //   //return true if empty
+    //   res.render("success");
+    // }else{
+    //   /// process the login automatically:
+    //   var userpass = {
+    //     user: req.params.user,
+    //     pass: req.params.pass
+    //   };
+    //   res.json(userpass);
+      
+    // }
     res.render("success");
    
   });
@@ -110,7 +123,7 @@ module.exports = function(app) {
   app.get("/login", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/success");
     }
     res.render("login");
     // res.sendFile(path.join(__dirname, "../public/login.html"));
