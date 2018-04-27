@@ -23,11 +23,12 @@ var APIURL2 = "http://food2fork.com/api/get?key="+API1KEY+"&rId=" + rId;
 
 
 var API2KEY = "5575c3141757734d74930b6d97e"; 
-var Q1 = "hiking";
+var Q1 = "biking";
 //api.meetup.com
 // /2/events
  
-var APIURL3 = "https://api.meetup.com/&sign=true&photo-host=public&search="+API2KEY+"&q1+=" + Q1;
+var APIURL3 = "https://api.meetup.com/2/cities?&sign=true&photo-host=public&country=usa &query=where can i hike &state=ca&page=20"
++API2KEY+"&q1+=" + Q1;
 // var APIURL3 = "https://www.meetup.com/meetup_api/search?key="+API2KEY+"&q=" + Q1; 
 
 
