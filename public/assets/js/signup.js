@@ -7,7 +7,7 @@ $(document).ready(function() {
   var lastnameInput = $("input#last_name");
   var displaynameInput = $("input#display-name");
   var genderInput = $("select#gender");
-  var dobInput = $("select#DOB"); // needs processing in momentjs
+  var dobInput = $("input#DOB"); 
   var activitylevelInput = $("select#activity-level");
   var activityInput = $("select#activities"); // needs process
   var dietaryresInput = $("select#food"); // needs process
@@ -21,18 +21,32 @@ $(document).ready(function() {
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", function(event) {
     event.preventDefault();
+    var activityInputs = "";
+    for(var i =0; i<activityInput.val().length; i++){
+      (i == 0)? comma="" : comma=",";
+      activityInputs += comma+activityInput.val()[i];
+    }
+    var dietaryresInputs = "";
+    for(var i =0; i<dietaryresInput.val().length; i++){
+      (i == 0)? comma="" : comma=",";
+
+      dietaryresInputs += comma+dietaryresInput.val()[i];
+    }
+ 
+    ///we just changed it to string from object to handle multiple input boxes input values for our prject in today
+    
     var userData = {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
       firstname: firstnameInput.val().trim(),
       lastname: lastnameInput.val().trim(),
       displayname: displaynameInput.val().trim(),
-      gender: genderInput.val().trim(),
-      dob: dobInput.val().trim(),
-      activitylevel: activitylevelInput.val().trim(),
-      activity: activityInput.val().trim(),
-      dietaryres: dietaryresInput.val().trim(),
-      zipcode: zipcodeInput
+      gender: genderInput.val(),
+      dob: dobInput.val(),
+      activitylevel: activitylevelInput.val(),
+      activity: activityInputs,
+      dietaryres: dietaryresInputs,
+      zipcode: zipcodeInput.val().trim()
     };
 
     if (!userData.email || !userData.password) {
