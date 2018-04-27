@@ -49,7 +49,52 @@ $(document).ready(function() {
       zipcode: zipcodeInput.val().trim()
     };
 
-    if (!userData.email || !userData.password) {
+    if (!userData.email || !userData.password || !userData.firstname || !userData.lastname || !userData.displayname || !userData.gender || !userData.dob || !userData.activitylevel || !userData.activity || !userData.dietaryres || !userData.zipcode) {
+      if(!userData.email ){
+        $("#email_danger").show();
+      }
+
+      if( !userData.password ){
+        $("#password_danger").show();
+      }
+
+      if(!userData.firstname ){
+
+      }
+
+      if(!userData.lastname ){
+
+      }
+
+      if(!userData.displayname){
+
+      }
+
+      if(!userData.gender){
+
+      }
+
+      if(!userData.dob){
+
+      }
+
+      if(!userData.activitylevel ){
+
+
+      }
+
+      if(!userData.activity)
+      {
+
+      }
+
+      if(!userData.dietaryres ){
+
+      }
+
+      if(!userData.zipcode){
+
+      }
       return;
     }
     // If we have an email and password, run the signUpUser function

@@ -27,11 +27,15 @@
         <form class="signup col s12">
             <h4>Sign-up</h4>
           <div class="input-field col s12 m6 l6">
-            <p>Email</p>
+            
+            <p>Email<span class="red-text" id="email_danger" style="display:none;"> (Required Field)</span></p>
+                
             <input id="email-input" type="email" class="form-control">
+        
+            
           </div>
           <div class="input-field col s12 m6 l6">
-            <p>Password</p>
+            <p>Password<span class="red-text" id="password_danger" style="display:none;"> (Required Field)</span></p>
             <input id="password-input" type="password" class="form-control">
           </div>
           {{!-- <div style="display: none" id="alert" class="alert alert-danger" role="alert">
@@ -39,26 +43,26 @@
             <span class="sr-only">Error:</span> <span class="msg"></span>
           </div> --}}
           <div class="input-field col s12 m6 l6">
-            <p>First Name</p>
+            <p>First Name<span class="red-text" id="first_name_danger" style="display:none;"> (Required Field)</span></p>
             <input id="first_name" type="text" class="form-control">
           </div>
           <div class="input-field col s12 m6 l6">
-            <p>Last Name</p>
+            <p>Last Name<span class="red-text" id="last_name_danger" style="display:none;"> (Required Field)</span></p>
             <input id="last_name" type="text" class="form-control">
           </div>
           
           <div class="input-field col s12 m6 l6">
-            <p>Nickname (optional)</p>
+            <p>Nickname (optional)<span class="red-text" id="display-name_danger" style="display:none;"> (Required Field)</span></p>
             <input id="display-name" type="text" class="form-control">
           </div>
 
           <div class="input-field col s12 m6 l6">
-            <p>Date of Birth</p>
+            <p>Date of Birth<span class="red-text" id="DOB_danger" style="display:none;"> (Required Field)</span></p>
             <input type="text" class="datepicker" id="DOB">
           </div>
 
           <div class="input-field col s12 m6 l6">
-            <p>Gender</p>
+            <p>Gender<span class="red-text" id="gender_danger" style="display:none;"> (Required Field)</span></p>
             <select class="gender" name="gender" id="gender">
                 <option value="" disabled selected></option>
                 <option value="M">Male</option>
@@ -67,7 +71,7 @@
           </div>
 
           <div class="input-field col s12 m6 l6">
-            <p>Activity Level</p>
+            <p>Activity Level<span class="red-text" id="activity-level_danger" style="display:none;"> (Required Field)</span></p>
             <select class="activity-level" id="activity-level" name="activity-level">
                 <option value="" disabled selected></option>
                 <option value="1">1 (Not active)</option>
@@ -79,7 +83,7 @@
           </div>
 
           <div class="input-field col s12 m6 l6">
-            <p>Activities</p>
+            <p>Activities<span class="red-text" id="activities_danger" style="display:none;"> (Required Field)</span></p>
             <select multiple class="activities" name="activities" id="activities">
                 <option value="walking">Walking</option>
                 <option value="running">Running</option>
@@ -92,7 +96,7 @@
           </div>
 
           <div class="input-field col s12 m6 l6">
-            <p>Food Restrictions</p>
+            <p>Food Restrictions<span class="red-text" id="food_danger" style="display:none;"> (Required Field)</span></p>
             <select multiple class="food" name="food" id="food">
                 <optgroup label="Dietary">
                     <option value="gluten-free">Gluten Free</option>
@@ -115,7 +119,7 @@
           </div>
 
           <div class="input-field col s12 m6 l6">
-            <p>Zip Code</p>
+            <p>Zip Code<span class="red-text" id="zip_danger" style="display:none;"> (Required Field)</span></p>
             <input id="zip-code" type="text" class="form-control">
           </div>
         
