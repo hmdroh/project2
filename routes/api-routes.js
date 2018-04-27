@@ -25,7 +25,17 @@ module.exports = function(app) {
     console.log(req.body);
     db.User.create({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      displayname: req.body.displayname,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      gender: req.body.gender,
+      dob: req.body.dob,
+      activitylevel: req.body.activitylevel,
+      activity: req.body.activity,
+      dietaryres: req.body.dietaryres,
+      zipcode: req.body.zipcode
+
     }).then(function() {
       res.redirect(307, "/api/login");
     }).catch(function(err) {
