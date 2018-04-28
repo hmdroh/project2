@@ -1,7 +1,7 @@
 var request = require("request");
 
 //getting the list:
-var API1KEY = "0df5e88330d88cc67aa6056e35ac48e6";
+var API1KEY = process.env.FOOD_2_FORK;
 var Q = "paleo";
 
 var APIURL = "http://food2fork.com/api/search?key="+API1KEY+"&q=" + Q;
