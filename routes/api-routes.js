@@ -7,6 +7,8 @@
 
 // Requiring our models
 var db = require("../models");
+var path = require("path");
+
 var passport = require("../config/passport");
 
 // Routes
@@ -34,6 +36,7 @@ module.exports = function(app) {
       activitylevel: req.body.activitylevel,
       activity: req.body.activity,
       dietaryres: req.body.dietaryres,
+      allergies: req.body.allergies,
       zipcode: req.body.zipcode
 
     }).then(function() {
@@ -70,6 +73,7 @@ module.exports = function(app) {
         dob: req.user.dob,
         activitylevel: req.user.activitylevel,
         activity: req.user.activity,
+        allergies: req.user.allergies,
         dietaryres: req.user.dietaryres,
         zipcode: req.user.zipcode
       });
@@ -77,6 +81,14 @@ module.exports = function(app) {
   });
 
 
+///testing purpose:
+  app.get("/api/getjson/:filename", function(req, res) {
+    if(req.params.filename){
+    res.sendFile(path.join(__dirname,`../public/jsons/${req.params.filename}`));
+    }else{
+      res.end(false);
+    }
+  });
 
   /////////////////////////////////////////end of passport api
 

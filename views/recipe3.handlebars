@@ -1,0 +1,66 @@
+    <nav>
+        <div class="nav-wrapper">
+        <a href="/" class="brand-logo"><img src="assets/img/003-wellness-logo.png"></a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons menu">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/activities">Activities</a></li>
+                <li>|</li>
+                <li><a href="/eats">Healthy Eating</a></li>
+                <li>|</li>
+                <li><a href="/favorites">Favorites</a></li>
+                <li>|</li>
+                <li><a href="/signup">Sign-up</a></li>
+                <li>|</li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/activities">Activities</a></li>
+        <li><a href="/eats">Healthy Eating</a></li>
+        <li><a href="/favorites">Favorites</a></li>
+        <li><a href="/signup">Sign-up</a></li>
+        <li><a href="/login">Login</a></li>
+    </ul>
+
+{{#each boo}}
+<div class="container" id="recipe">
+
+  <div class="row">
+      <div class="col s12 m6 l6">
+        <h4>{{title}}</h4>
+      </div>
+  </div>  
+<div class="row">
+    <div class="col s12 m6 l6">
+        <h6>{{readyInMinutes}} minutes to ready.</h6>
+    </div>
+</div>
+  <div class="row">
+    <div class="col s12 m6 l6">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{this.image_url}}">
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m6 l6">
+        <p>INGREDIENTS:</p>
+        <ul>{{#each this.ingredients}}
+            <li>{{this.originalString}}</li>
+            {{/each}}
+        </ul>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col s12 l12">
+      <p>INSTRUCTIONS:</p>
+     
+      <p>{{directions}}</p>
+     
+      </div>
+  </div>
+</div>
+{{/each}}
