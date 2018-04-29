@@ -89,8 +89,12 @@ ul.dropdown-content.select-dropdown li:not(.disabled) span {
 
 .card-image {
   max-width: 100%;
+  /* max height should be fixed */
   position: relative;
   margin: auto;
+}
+.card-image img {
+  
 }
 
 .card {
