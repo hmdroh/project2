@@ -105,9 +105,8 @@ ul.dropdown-content.select-dropdown li:not(.disabled) span {
 .text-box {
   z-index: 100;
   position: relative;
-  background-color: #aaaaaa;
+  background-color: #aaaaaa71;
   color: black;
-  opacity: 0.60;
   margin-top: 50px;
   margin-left: 30px;
   padding-left: 20px;
