@@ -49,6 +49,9 @@ module.exports = function(sequelize, DataTypes) {
     dietaryres: {
       type: DataTypes.STRING
     },
+    allergies: {
+      type: DataTypes.STRING
+    },
     zipcode:{
       type: DataTypes.INTEGER
     }

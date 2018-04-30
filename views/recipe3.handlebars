@@ -24,39 +24,43 @@
         <li><a href="/login">Login</a></li>
     </ul>
 
-<div class="container" id="recipe-body">
+{{#each boo}}
+<div class="container" id="recipe">
 
   <div class="row">
-    <div class="col s12 m6 l4">
+      <div class="col s12 m6 l6">
+        <h4>{{title}}</h4>
+      </div>
+  </div>  
+<div class="row">
+    <div class="col s12 m6 l6">
+        <h6>{{readyInMinutes}} minutes to ready.</h6>
+    </div>
+</div>
+  <div class="row">
+    <div class="col s12 m6 l6">
       <div class="card">
         <div class="card-image">
-          <img src="assets/img/hiking.jpg">
-        </div>
-        <div class="card-content">
-          <a href="/activity">Sunday Morning Hike</a>
+          <img src="{{this.image_url}}">
         </div>
       </div>
     </div>
-  </div>
-
-
-<div class="row">
-    <div class="col s12 m12 l12">
-      <div class="card">
-        <div class="card-content">
-          <div class="row">
-            <div class="col l2" id="date">
-              <p>May 6 2018</p>
-            </div>
-            <div class="col l8">
-              <a href="/activity" id="title">Sunday Morning Hike</a>
-              <p id="location">Cowles Mountain - San Diego, CA</p>
-            </div>
-            <div class="col l2">
-              <i class="material-icons">favorite</i>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="col s12 m6 l6">
+        <p>INGREDIENTS:</p>
+        <ul>{{#each this.ingredients}}
+            <li>{{this.originalString}}</li>
+            {{/each}}
+        </ul>
     </div>
   </div>
+
+  <div class="row">
+      <div class="col s12 l12">
+      <p>INSTRUCTIONS:</p>
+     
+      <p>{{directions}}</p>
+     
+      </div>
+  </div>
+</div>
+{{/each}}

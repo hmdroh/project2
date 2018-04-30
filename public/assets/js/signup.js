@@ -9,8 +9,9 @@ $(document).ready(function() {
   var genderInput = $("select#gender");
   var dobInput = $("input#DOB"); 
   var activitylevelInput = $("select#activity-level");
-  var activityInput = $("select#activities"); // needs process
-  var dietaryresInput = $("select#food"); // needs process
+  var activityInput = $("select#activities");
+  var allergiesInput = $("select#allergies"); 
+  var dietaryresInput = $("select#food"); 
   var zipcodeInput = $("input#zip-code");
 
   
@@ -32,6 +33,13 @@ $(document).ready(function() {
 
       dietaryresInputs += comma+dietaryresInput.val()[i];
     }
+
+    var allergiesInputs = "";
+    for(var i =0; i<allergiesInput.val().length; i++){
+      (i == 0)? comma="" : comma=",";
+
+      allergiesInputs += comma+allergiesInput.val()[i];
+    }
  
     ///we just changed it to string from object to handle multiple input boxes input values for our prject in today
     
@@ -46,67 +54,123 @@ $(document).ready(function() {
       activitylevel: activitylevelInput.val(),
       activity: activityInputs,
       dietaryres: dietaryresInputs,
+      allergies: allergiesInputs,
       zipcode: zipcodeInput.val().trim()
     };
 
-    if (!userData.email || !userData.password || !userData.firstname || !userData.lastname || !userData.displayname || !userData.gender || !userData.dob || !userData.activitylevel || !userData.activity || !userData.dietaryres || !userData.zipcode) {
+    if (!userData.email || !userData.password || !userData.firstname || !userData.lastname || !userData.displayname || !userData.gender || !userData.dob || !userData.activitylevel || !userData.activity || !userData.dietaryres || !userData.allergies || !userData.zipcode) {
+      var selected =false;
+      //hide all dangers before unhiding the unfilled
+      $("[id$='danger']").hide();
+    
       if(!userData.email ){
         $("#email_danger").show();
+        if(selected === false){
+          selected = $("input#email-input");
+        }
       }
 
       if( !userData.password ){
         $("#password_danger").show();
+        if(selected === false){
+          selected = $("input#password-input");
+        }
       }
 
       if(!userData.firstname ){
+        $("#first_name_danger").show();
+        if(selected === false){
+          selected = $("input#first_name");
+        }
 
       }
 
       if(!userData.lastname ){
+        $("#last_name_danger").show();
+        if(selected === false){
+          selected = $("input#last_name");
+        }
 
       }
 
       if(!userData.displayname){
+        $("#display-name_danger").show();
+        if(selected === false){
+          selected = $("input#display-name");
+        }
 
       }
 
       if(!userData.gender){
+        $("#gender_danger").show();
+        if(selected === false){
+          selected = $("#gender");
+        }
 
       }
 
       if(!userData.dob){
+        $("#DOB_danger").show();
+        if(selected === false){
+          selected = $("#DOB");
+        }
 
       }
 
       if(!userData.activitylevel ){
+        $("#activity-level_danger").show();
+        if(selected === false){
+          selected = $("#activity-level");
+        }
 
 
       }
 
       if(!userData.activity)
       {
+        $("#activities_danger").show();
+        if(selected === false){
+          selected = $("#activities");
+        }
 
       }
 
       if(!userData.dietaryres ){
+        $("#food_danger").show();
+        if(selected === false){
+          selected = $("#food");
+        }
+        
+      }
 
+      if(!userData.allergies ){
+        $("#allergies_danger").show();
+        if(selected === false){
+          selected = $("#allergies");
+        }
+        
       }
 
       if(!userData.zipcode){
-
+        $("#zip_danger").show();
+        if(selected === false){
+          selected = $("#zip-code");
+        }
+        
       }
+      //go to first missing item:
+      selected.focus();
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.email, userData.password, userData.displayname, userData.firstname, userData.lastname, userData.gender, userData.dob, userData.activitylevel, userData.activity, userData.dietaryres, userData.zipcode);
-    emailInput.val("");
-    passwordInput.val("");
+    signUpUser(userData.email, userData.password, userData.displayname, userData.firstname, userData.lastname, userData.gender, userData.dob, userData.activitylevel, userData.activity, userData.dietaryres, userData.allergies , userData.zipcode);
+    
 
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(email, password, displayname, firstname, lastname, gender, dob, activitylevel, activity, dietaryres, zipcode) {
+  function signUpUser(email, password, displayname, firstname, lastname, gender, dob, activitylevel, activity, dietaryres, allergies, zipcode) {
     $.post("/api/signup", {
       email: email,
       password: password,
@@ -118,6 +182,7 @@ $(document).ready(function() {
       activitylevel: activitylevel,
       activity: activity,
       dietaryres: dietaryres,
+      allergies: allergies,
       zipcode: zipcode
     }).then(function(data) {
       window.location.replace(data);

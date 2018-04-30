@@ -17,7 +17,7 @@
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="/activities">Activities</a></li>
+        <li><a href="/activites">Activities</a></li>
         <li><a href="/eats">Healthy Eating</a></li>
         <li><a href="/favorites">Favorites</a></li>
         <li><a href="/signup">Sign-up</a></li>
@@ -27,36 +27,18 @@
 <div class="container" id="recipe-body">
 
   <div class="row">
+    {{#each boo}}
     <div class="col s12 m6 l4">
       <div class="card">
         <div class="card-image">
-          <img src="assets/img/hiking.jpg">
+          <img src="{{image_url}}">
         </div>
         <div class="card-content">
-          <a href="/activity">Sunday Morning Hike</a>
+          {{!-- <a href="/recipe/{{recipe_id}}">{{title}}</a> --}}
+          <a href="/recipe1">{{title}}</a>
         </div>
       </div>
     </div>
+    {{/each}}
   </div>
-
-
-<div class="row">
-    <div class="col s12 m12 l12">
-      <div class="card">
-        <div class="card-content">
-          <div class="row">
-            <div class="col l2" id="date">
-              <p>May 6 2018</p>
-            </div>
-            <div class="col l8">
-              <a href="/activity" id="title">Sunday Morning Hike</a>
-              <p id="location">Cowles Mountain - San Diego, CA</p>
-            </div>
-            <div class="col l2">
-              <i class="material-icons">favorite</i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
