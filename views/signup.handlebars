@@ -1,106 +1,151 @@
 <nav>
-        <div class="nav-wrapper">
-        <a href="#" class="brand-logo"><img src="assets/img/003-wellness-logo.png"></a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons menu">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="#">Activities</a></li>
-                <li>|</li>
-                <li><a href="#">Healthy Eating</a></li>
-                <li>|</li>
-                <li><a href="#">Sign-up</a></li>
-                <li>|</li>
-                <li><a href="#">Login</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="#">Activities</a></li>
-        <li><a href="#">Healthy Eating</a></li>
-        <li><a href="#">Sign-up</a></li>
-        <li><a href="#">Login</a></li>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo">
+      <img src="assets/img/003-wellness-logo.png">
+    </a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+      <i class="material-icons menu">menu</i>
+    </a>
+    <ul class="right hide-on-med-and-down">
+      <li>
+        <a href="/activites">Activities</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a href="/eats">Healthy Eating</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a href="/signup">Sign-up</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a href="/login">Login</a>
+      </li>
     </ul>
+  </div>
+</nav>
 
-    <div class="container">
-        <div class="sign-up-form">
-            <h4>Sign-up</h4>
-            <br>
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s6">
-                        <h6>First Name</h6>
-                        <input id="first_name" type="text" class="validate">
-                    </div>
-                    <div class="input-field col s6">
-                        <h6>Last Name</h6>
-                        <input id="last_name" type="text" class="validate">
-                    </div>
-
-                    <div class="input-field col s6">
-                            <h6>Gender</h6>
-                            <select class="gender">
-                                <option value="" disabled selected>Select</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                    </div>
-
-                    <div class="input-field col s6">
-                            <h6>Age Range</h6>
-                            <select class="age">
-                                <option value="" disabled selected>Select</option>
-                                <option value="12-17">12-17</option>
-                                <option value="18-24">18-24</option>
-                                <option value="25-34">25-34</option>
-                                <option value="35-44">35-44</option>
-                                <option value="45-54">45-54</option>
-                                <option value="55-64">55-64</option>
-                                <option value="65+">65+</option>
-                            </select>
-                    </div>
+<ul class="sidenav" id="mobile-demo">
+  <li>
+    <a href="/activities">Activities</a>
+  </li>
+  <li>
+    <a href="/eats">Healthy Eating</a>
+  </li>
+  <li>
+    <a href="/signup">Sign-up</a>
+  </li>
+  <li>
+    <a href="/login">Login</a>
+  </li>
+</ul>
 
 
-
-
-                    
-                </div>
-            </form>
-        </div>
-    </div>
-
-
-
-{{!-- Passport code to modify  --}}
-{{!-- <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
+<div class="container">
+  <div class="row">
+    <form class="signup col s12">
+      <h4>Sign-up</h4>
+      <div class="input-field col s12 m6 l6">
+        <p>Email</p>
+        <input id="email-input" type="email" class="form-control" required="">
       </div>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Sign Up Form</h2>
-        <form class="signup">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="email-input" placeholder="Email">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="password-input" placeholder="Password">
-          </div>
-          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span> <span class="msg"></span>
-          </div>
-          <button type="submit" class="btn btn-default">Sign Up</button>
-        </form>
-        <br />
-        <p>Or log in <a href="/login">here</a></p>
+      <div class="input-field col s12 m6 l6">
+        <p>Password</p>
+        <input id="password-input" type="password" class="form-control" required="">
       </div>
-    </div>
-  </div> --}}
+      {{!--
+      <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <span class="msg"></span>
+      </div> --}}
+      <div class="input-field col s12 m6 l6">
+        <p>First Name</p>
+        <input id="first_name" type="text" class="form-control" required="">
+      </div>
+      <div class="input-field col s12 m6 l6">
+        <p>Last Name</p>
+        <input id="last_name" type="text" class="form-control" required="">
+      </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/signup.js"></script>
+      <div class="input-field col s12 m6 l6">
+        <p>Nickname (optional)</p>
+        <input id="display-name" type="text" class="form-control" required="">
+      </div>
+
+      <div class="input-field col s12 m6 l6">
+        <p>Date of Birth</p>
+        <input type="text" class="datepicker" id="DOB" required="">
+      </div>
+
+      <div class="input-field col s12 m6 l6">
+        <p>Gender</p>
+        <select class="gender">
+          <option value="" disabled selected></option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+      </div>
+
+      <div class="input-field col s12 m6 l6">
+        <p>Activity Level</p>
+        <select class="activity-level">
+          <option value="" disabled selected></option>
+          <option value="1">1 (Not active)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 (Very active)</option>
+        </select>
+      </div>
+
+      <div class="input-field col s12 m6 l6">
+        <p>Activities, choose all that apply</p>
+        <select multiple class="activities">
+          <option value="walking">Walking</option>
+          <option value="running">Running</option>
+          <option value="hiking">Hiking</option>
+          <option value="biking">Biking</option>
+          <option value="swimming">Swimming</option>
+          <option value="soccer">Yoga</option>
+          <option value="basketball">Martial Arts</option>
+        </select>
+      </div>
+
+      <div class="input-field col s12 m6 l6">
+        <p>Food Restrictions</p>
+        <select multiple class="activities">
+          <option value="basketball">None</option>
+          <optgroup label="Dietary">
+            <option value="gluten-free">Gluten Free</option>
+            <option value="dairy-free">Dairy Free</option>
+            <option value="vegan">Vegan</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="paleo">Paleo</option>
+            <option value="kosher">Kosher</option>
+            {{!--
+            <option value="basketball">None</option> --}}
+          </optgroup>
+          <optgroup label="Allergies">
+            <option value="nuts">Nuts</option>
+            <option value="shellfish">Shellfish</option>
+            <option value="wheat">Wheat</option>
+            <option value="soy">Soy</option>
+            <option value="eggs">Eggs</option>
+            {{!--
+            <option value="basketball">None</option> --}}
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="col s12 m6 l6">
+        <button type="submit" class="btn btn-default">Sign Up</button>
+      </div>
+    </form>
+    {{!--
+    <br />
+    <p>Or log in
+      <a href="/login">here</a>
+    </p> --}}
+  </div>
+</div>
