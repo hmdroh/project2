@@ -308,9 +308,9 @@ module.exports = function (app) {
   //   res.render("recipe");
   // });
 
-  // app.get("/activity", function (req, res) {
-  //   res.render("activity");
-  // });
+  app.get("/activity", function (req, res) {
+    res.render("activity");
+  });
 
   app.get("/favorites", function (req, res) {
     res.render("favorites");
