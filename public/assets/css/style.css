@@ -131,3 +131,13 @@ ul.dropdown-content.select-dropdown li:not(.disabled) span {
   padding-top: 80px;
   padding-bottom: 80px;
 }
+
+.wrapper {
+  padding: 20px;
+  padding: 40px;
+}
+
+.map img {
+  padding-left: 20px;
+  max-width: 500px;
+}
