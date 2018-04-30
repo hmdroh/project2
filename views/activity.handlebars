@@ -23,6 +23,35 @@
         <li><a href="/signup">Sign-up</a></li>
         <li><a href="/login">Login</a></li>
     </ul>
+
+<div class="wrapper">
     {{#each boo}}
-        {{name}}
+    <div class=row>
+        <div class="col s12 m6 l5">
+            <div class="activity-info">
+                <div class="title" id="title">
+                    <h4>{{name}}</h4>
+                </div>
+                <div class="date" id="date">
+                    <h6>{{local_date}} {{local_time}}</h6>
+                </div>
+                <div class="location" id="location">
+                    <h6>{{#if addressFromVenue}}{{venue_address}}{{else}}{{group_address}}{{/if}}</h6>
+                </div>
+                <div class="description" id="description">
+                    <p>{{description}}</p>
+                </div>
+                <i class="material-icons">favorite_border</i>
+            </div>
+        </div>
+
+        <div class="col s12 m6 l5">
+            <div class="map" id="map">
+                <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyACRrSlGYwdRWfnNbC8V63VzKEjpPKPCGA
+    &q={{#if addressFromVenue}}{{venue_address}}{{else}}{{group_address}}{{/if}}" allowfullscreen>
+</iframe>
+            </div>
+        </div>
+    </div>
     {{/each}}
+</div>
