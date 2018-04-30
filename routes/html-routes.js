@@ -19,8 +19,8 @@ module.exports = function (app) {
   });
 
   app.get("/eats/:offset", function (req, res) {
-    
-    
+
+
     // request.get("http://localhost:8080/api/getjson/exampleS2.json", function (err, body) {
     //   var b = JSON.parse(body.body);
     //   var data = [];
@@ -41,60 +41,61 @@ module.exports = function (app) {
 
     var query = "chicken"; //required
     var number = 20;
-    var offset = (parseInt(req.params.offset)-1) * number;
+    var offset = (parseInt(req.params.offset) - 1) * number;
     var type = "";
     var intolerances = "";
     var excludeIngredients = "";
     var diet = "";
     var cuisine = "";
 
-    var url = 
-    `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?`+
-    `query=${query}`+ //The (natural language) recipe search query.
-    `&number=${number}`+ 
-    `&type=${type}`+ // main course, side dish, dessert, appetizer, salad, bread, breakfast, soup, beverage, sauce, or drink
-    `&intolerances=${intolerances}`+ //A comma-separated list of intolerances, Possible values are: dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat.
-    `&instructionsRequired=true`+ // true false, Whether the recipes must have instructions.
-    `&limitLicense=false`+
-    `&offset=${offset}`+
-    `&excludeIngredients=${excludeIngredients}`+ //An comma-separated list of ingredients or ingredient types that must not be contained in the recipes.
-    `&diet=${diet}`+ // The diet to which the recipes must be compliant. Possible values are: pescetarian, lacto vegetarian, ovo vegetarian, vegan, and vegetarian.
-    `&cuisine=${cuisine}` // One or more (comma separated) of the following: african, chinese, japanese, korean, vietnamese, thai, indian, british, irish, french, italian, mexican, spanish, middle eastern, jewish, american, cajun, southern, greek, german, nordic, eastern european, caribbean, or latin american.
+    var url =
+      `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?` +
+      `query=${query}` + //The (natural language) recipe search query.
+      `&number=${number}` +
+      `&type=${type}` + // main course, side dish, dessert, appetizer, salad, bread, breakfast, soup, beverage, sauce, or drink
+      `&intolerances=${intolerances}` + //A comma-separated list of intolerances, Possible values are: dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat.
+      `&instructionsRequired=true` + // true false, Whether the recipes must have instructions.
+      `&limitLicense=false` +
+      `&offset=${offset}` +
+      `&excludeIngredients=${excludeIngredients}` + //An comma-separated list of ingredients or ingredient types that must not be contained in the recipes.
+      `&diet=${diet}` + // The diet to which the recipes must be compliant. Possible values are: pescetarian, lacto vegetarian, ovo vegetarian, vegan, and vegetarian.
+      `&cuisine=${cuisine}` // One or more (comma separated) of the following: african, chinese, japanese, korean, vietnamese, thai, indian, british, irish, french, italian, mexican, spanish, middle eastern, jewish, american, cajun, southern, greek, german, nordic, eastern european, caribbean, or latin american.
     request({
       headers: {
         'X-Mashape-Key': process.env.SPOONACULAR_KEY
-     },
+      },
       uri: url,
       method: 'GET'
     }, function (err, body) {
       var b = JSON.parse(body.body);
       // res.json(b);
-        var data = [];
-      for(var i=0; i<b.results.length; i++){
+      var data = [];
+      for (var i = 0; i < b.results.length; i++) {
         var thisR = {
           title: b.results[i].title,
           recipe_id: b.results[i].id,
-          image_url: b.baseUri+b.results[i].image
+          image_url: b.baseUri + b.results[i].image
         };
         data.push(thisR);
       }
-      
-      if(parseInt(req.params.offset) + 1 > 1){
-       var firstOffset = false;
-      }else{
+
+      if (parseInt(req.params.offset) + 1 > 1) {
+        var firstOffset = false;
+      } else {
         var firstOffset = true;
       }
       res.render("eats", {
-        page:{
-        title: "Reciepe List from spoon-",
-        nextOffset: parseInt(req.params.offset) + 1,
-        firstOffset: firstOffset
-      },
-        boo: data});
-    
+        page: {
+          title: "Reciepe List from spoon-",
+          nextOffset: parseInt(req.params.offset) + 1,
+          firstOffset: firstOffset
+        },
+        boo: data
+      });
+
     });
-  
-  
+
+
   });
 
 
@@ -107,7 +108,7 @@ module.exports = function (app) {
       var b = JSON.parse(body.body);
       var data = [];
       // res.json(b);
-      for(var i=0; i<b.recipes.length; i++){
+      for (var i = 0; i < b.recipes.length; i++) {
         var thisR = {
           title: b.recipes[i].title,
           recipe_id: b.recipes[i].recipe_id,
@@ -116,9 +117,11 @@ module.exports = function (app) {
         data.push(thisR);
       }
       res.render("eats2", {
-        page:{
-        title: "Reciepe List"},
-        boo: data});
+        page: {
+          title: "Reciepe List"
+        },
+        boo: data
+      });
     });
   });
 
@@ -141,9 +144,11 @@ module.exports = function (app) {
       data.push(dataob);
       // res.json(data);
       res.render("recipe2", {
-        page:{
-        title: "Reciepe 1"},
-        boo: data});
+        page: {
+          title: "Reciepe 1"
+        },
+        boo: data
+      });
     });
 
   });
@@ -167,8 +172,9 @@ module.exports = function (app) {
       data.push(dataob);
       // res.json(data);
       res.render("recipe3", {
-        page:{
-        title: "Reciepe Test"},
+        page: {
+          title: "Reciepe Test"
+        },
         boo: data
       });
     });
@@ -210,59 +216,83 @@ module.exports = function (app) {
 
 
   app.get("/activities", function (req, res) {
-    
-    
-   
 
-    var page = 20;
+    var page = 100;
     var text = req.user.activity;
     var radius = 25.0;
     var lng = req.user.lng;
     var lat = req.user.lat;
     var key = process.env.MEETUP_KEY;
 
-    var url = 
-    `https://api.meetup.com/find/upcoming_events?photo-host=public`+
-    `&page=${page}`+ 
-    `&text=${text}`+ 
-    `&radius=${radius}`+
-    `&lon=${lng}`+ 
-    `&lat=${lat}`+
-    `&key=${key}`
-      request({
+    var url =
+      `https://api.meetup.com/find/upcoming_events?photo-host=public` +
+      `&page=${page}` +
+      `&text=${text}` +
+      `&radius=${radius}` +
+      `&lon=${lng}` +
+      `&lat=${lat}` +
+      `&key=${key}`
+    request({
       uri: url,
       method: 'GET'
     }, function (err, body) {
       var b = JSON.parse(body.body);
-      res.json(b);
-      return false;
-      // res.json(b);
-        var data = [];
-      for(var i=0; i<b.results.length; i++){
-        var thisR = {
-          title: b.results[i].title,
-          recipe_id: b.results[i].id,
-          image_url: b.baseUri+b.results[i].image
-        };
-        data.push(thisR);
+    
+      var data = [];
+      for (var i = 0; i < b.events.length; i++) {
+
+        if(b.events[i].local_date){
+        if (b.events[i].venue) {
+          var thisR = {
+            name: b.events[i].name,
+            id: b.events[i].id,
+            local_date: b.events[i].local_date,
+            local_time: b.events[i].local_time,
+            link: b.events[i].link,
+            addressFromVenue: true,
+            group_name: b.events[i].group.name,
+            group_address: b.events[i].group.localized_location,
+            venue_name: b.events[i].venue.name,
+            venue_address: b.events[i].venue.address_1 + ", " + b.events[i].venue.city + ", " + b.events[i].venue.country,
+            description: b.baseUri + b.events[i].description
+          };
+          data.push(thisR);
+        }else{
+          var thisR = {
+            name: b.events[i].name,
+            id: b.events[i].id,
+            local_date: b.events[i].local_date,
+            local_time: b.events[i].local_time,
+            link: b.events[i].link,
+            addressFromVenue: false,
+            group_name: b.events[i].group.name,
+            group_address: b.events[i].group.localized_location,
+            venue_name: "",
+            venue_address: "",
+            description: ""
+          };
+          data.push(thisR);
+        }
       }
-      
-      if(parseInt(req.params.offset) + 1 > 1){
-       var firstOffset = false;
-      }else{
+      }
+
+      if (parseInt(req.params.offset) + 1 > 1) {
+        var firstOffset = false;
+      } else {
         var firstOffset = true;
       }
-      res.render("eats", {
-        page:{
-        title: "Reciepe List from spoon-",
-        nextOffset: parseInt(req.params.offset) + 1,
-        firstOffset: firstOffset
-      },
-        boo: data});
-    
+      res.render("activities", {
+        page: {
+          title: "List of events",
+          nextOffset: parseInt(req.params.offset) + 1,
+          firstOffset: firstOffset
+        },
+        boo: data
+      });
+
     });
-  
-  
+
+
   });
 
   // app.get("/activities", function (req, res) {
@@ -272,22 +302,18 @@ module.exports = function (app) {
 
   // app.get("/eats", function (req, res) {
   //   res.render("eats");
-
   // });
 
   // app.get("/recipe", function (req, res) {
   //   res.render("recipe");
-
   // });
 
-  app.get("/activity", function (req, res) {
-    res.render("activity");
-
-  });
+  // app.get("/activity", function (req, res) {
+  //   res.render("activity");
+  // });
 
   app.get("/favorites", function (req, res) {
     res.render("favorites");
-
   });
 
 
