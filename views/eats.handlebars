@@ -1,41 +1,86 @@
-    <nav>
-        <div class="nav-wrapper">
-        <a href="/" class="brand-logo"><img src="assets/img/003-wellness-logo.png"></a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons menu">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="/activities">Activities</a></li>
-                <li>|</li>
-                <li><a href="/eats">Healthy Eating</a></li>
-                <li>|</li>
-                <li><a href="/favorites">Favorites</a></li>
-                <li>|</li>
-                <li><a href="/signup">Sign-up</a></li>
-                <li>|</li>
-                <li><a href="/login">Login</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="/activites">Activities</a></li>
-        <li><a href="/eats">Healthy Eating</a></li>
-        <li><a href="/favorites">Favorites</a></li>
-        <li><a href="/signup">Sign-up</a></li>
-        <li><a href="/login">Login</a></li>
+<nav>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo">
+      <img src="assets/img/003-wellness-logo.png">
+    </a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+      <i class="material-icons menu">menu</i>
+    </a>
+    <ul class="right hide-on-med-and-down">
+      <li>
+        <a href="/activities">Activities</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a href="/eats">Healthy Eating</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a href="/favorites">Favorites</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a href="/signup">Sign-up</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a href="/login">Login</a>
+      </li>
     </ul>
+  </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li>
+    <a href="/activites">Activities</a>
+  </li>
+  <li>
+    <a href="/eats">Healthy Eating</a>
+  </li>
+  <li>
+    <a href="/favorites">Favorites</a>
+  </li>
+  <li>
+    <a href="/signup">Sign-up</a>
+  </li>
+  <li>
+    <a href="/login">Login</a>
+  </li>
+</ul>
 
 <div class="container" id="recipe-body">
 
+    {{#if page.firstOffset}}
+    <div class="row">
+      <div class="col s12 m6 l4">
+        <a href="/eats/{{page.nextOffset}}" class="waves-effect waves-light btn">
+          <i class="material-icons left">navigate_before</i>Next page</a>
+      </div>
+    </div>{{/if}}
+
+
   <div class="row">
+
+    {{#each boo}}
     <div class="col s12 m6 l4">
       <div class="card">
         <div class="card-image">
-          <img src="assets/img/recipeimage.jpg">
+          <img src="{{image_url}}">
         </div>
         <div class="card-content">
-          <a href="/recipe">Sesame Salmon</a>
+          {{!--
+          <a href="/recipe/{{recipe_id}}">{{title}}</a> --}}
+          <a href="/recipe1">{{title}}</a>
         </div>
       </div>
     </div>
+    {{/each}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12 m6 l4">
+    <a href="/eats/{{page.nextOffset}}" class="waves-effect waves-light btn">
+      <i class="material-icons right">navigate_next</i>Next page</a>
   </div>
 </div>

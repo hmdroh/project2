@@ -1,3 +1,4 @@
+
 // *********************************************************************************
 // api-routes.js - this file offers a set of routes for displaying and saving data to the db
 // *********************************************************************************
@@ -10,6 +11,7 @@ var db = require("../models");
 var path = require("path");
 
 var passport = require("../config/passport");
+var request = require("request");
 
 // Routes
 // =============================================================
@@ -24,28 +26,39 @@ module.exports = function(app) {
   });
 
   app.post("/api/signup", function(req, res) {
-    console.log(req.body);
-    db.User.create({
-      email: req.body.email,
-      password: req.body.password,
-      displayname: req.body.displayname,
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      gender: req.body.gender,
-      dob: req.body.dob,
-      activitylevel: req.body.activitylevel,
-      activity: req.body.activity,
-      dietaryres: req.body.dietaryres,
-      allergies: req.body.allergies,
-      zipcode: req.body.zipcode
+    // console.log(req.body);
+    //calculating lat and lng:
+    var zipcode = req.body.zipcode;
+    request.get(`https://www.zipcodeapi.com/rest/${process.env.ZIPCODEAPI}/multi-info.json/${zipcode}/degrees`, function(err,body){
+      var b = JSON.parse(body.body);
 
-    }).then(function() {
-      res.redirect(307, "/api/login");
-    }).catch(function(err) {
-      console.log(err);
-      res.json(err);
-      // res.status(422).json(err.errors[0].message);
+      db.User.create({
+        email: req.body.email,
+        password: req.body.password,
+        displayname: req.body.displayname,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        gender: req.body.gender,
+        dob: req.body.dob,
+        activitylevel: req.body.activitylevel,
+        activity: req.body.activity,
+        dietaryres: req.body.dietaryres,
+        allergies: req.body.allergies,
+        zipcode: req.body.zipcode,
+        lat: b[zipcode].lat,
+        lng: b[zipcode].lng
+  
+      }).then(function() {
+        res.redirect(307, "/api/login");
+      }).catch(function(err) {
+        console.log(err);
+        res.json(err);
+        // res.status(422).json(err.errors[0].message);
+      });
+
     });
+
+    
   });
 
   // Route for logging user out
@@ -75,11 +88,12 @@ module.exports = function(app) {
         activity: req.user.activity,
         allergies: req.user.allergies,
         dietaryres: req.user.dietaryres,
-        zipcode: req.user.zipcode
+        zipcode: req.user.zipcode,
+        lat: req.user.lat,
+        lng: req.user.lng
       });
     }
   });
-
 
 ///testing purpose:
   app.get("/api/getjson/:filename", function(req, res) {
