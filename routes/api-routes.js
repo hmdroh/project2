@@ -7,6 +7,8 @@
 
 // Requiring our models
 var db = require("../models");
+var path = require("path");
+
 var passport = require("../config/passport");
 
 // Routes
@@ -18,14 +20,25 @@ module.exports = function(app) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
-    res.json("/members");
+    res.json("/success");
   });
 
   app.post("/api/signup", function(req, res) {
     console.log(req.body);
     db.User.create({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      displayname: req.body.displayname,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      gender: req.body.gender,
+      dob: req.body.dob,
+      activitylevel: req.body.activitylevel,
+      activity: req.body.activity,
+      dietaryres: req.body.dietaryres,
+      allergies: req.body.allergies,
+      zipcode: req.body.zipcode
+
     }).then(function() {
       res.redirect(307, "/api/login");
     }).catch(function(err) {
@@ -45,19 +58,37 @@ module.exports = function(app) {
   app.get("/api/user_data", function(req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
-      res.json({});
+      res.end(false);
     }
     else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
+        firstname: req.user.firstname,
+        lastname: req.user.lastname,
+        displayname: req.user.displayname,
+        gender: req.user.gender,
+        dob: req.user.dob,
+        activitylevel: req.user.activitylevel,
+        activity: req.user.activity,
+        allergies: req.user.allergies,
+        dietaryres: req.user.dietaryres,
+        zipcode: req.user.zipcode
       });
     }
   });
 
 
+///testing purpose:
+  app.get("/api/getjson/:filename", function(req, res) {
+    if(req.params.filename){
+    res.sendFile(path.join(__dirname,`../public/jsons/${req.params.filename}`));
+    }else{
+      res.end(false);
+    }
+  });
 
   /////////////////////////////////////////end of passport api
 

@@ -1,13 +1,13 @@
-{{!-- {{> data/example sleep=false}} --}}
     <nav>
         <div class="nav-wrapper">
         <a href="/" class="brand-logo"><img src="assets/img/003-wellness-logo.png"></a>
-        <!-- <a href="#" class="brand-name">LiveActive</a> -->
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons menu">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="/activities">Activities</a></li>
                 <li>|</li>
                 <li><a href="/eats">Healthy Eating</a></li>
+                <li>|</li>
+                <li><a href="/favorites">Favorites</a></li>
                 <li>|</li>
                 <li><a href="/signup">Sign-up</a></li>
                 <li>|</li>
@@ -19,22 +19,42 @@
     <ul class="sidenav" id="mobile-demo">
         <li><a href="/activities">Activities</a></li>
         <li><a href="/eats">Healthy Eating</a></li>
+        <li><a href="/favorites">Favorites</a></li>
         <li><a href="/signup">Sign-up</a></li>
         <li><a href="/login">Login</a></li>
     </ul>
 
-    
-        <div class="slideshow-container">
+{{#each boo}}
+<div class="container" id="recipe">
 
-                    <!-- Full-width images with number and caption text -->
-                    <div class="mySlides fade">
-                      <img src="assets/img/HealthWellness 2.jpg" style="width:100%">
-                    </div>
-                  
+  <div class="row">
+      <div class="col s12 m6 l6">
+        <h4>{{title}}</h4>
+      </div>
+  </div>  
 
-                    <!-- <div class="mySlides fade">
-                      <img src="assets/img/fitness4.jpg" style="width:100%">
-                    </div> -->
-                            
+  <div class="row">
+    <div class="col s12 m6 l6">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{this.image_url}}">
         </div>
-        
+      </div>
+    </div>
+    <div class="col s12 m6 l6">
+        <p>INGREDIENTS:</p>
+        <ul>{{#each this.ingredients}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col s12 l12">
+      <p>DIRECTIONS:</p>
+      <p><a href="{{this.source_url}}">Click here for directions</a></p>
+      </div>
+  </div>
+</div>
+{{/each}}

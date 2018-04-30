@@ -4,6 +4,7 @@
 // ******************************************************************************
 // *** Dependencies
 // =============================================================
+require("dotenv").config();
 var express = require("express");
 var bodyParser = require("body-parser");
 var session = require("express-session");
@@ -49,8 +50,9 @@ require("./routes/api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
+    // console.log(process.env.FOOD_2_FORK_KEY);
   });
 });

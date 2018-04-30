@@ -18,6 +18,12 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    firstname:{
+      type: DataTypes.STRING
+    },
+    lastname:{
+      type: DataTypes.STRING
+    },
     displayname: {
         type: DataTypes.STRING
     },
@@ -42,6 +48,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     dietaryres: {
       type: DataTypes.STRING
+    },
+    allergies: {
+      type: DataTypes.STRING
+    },
+    zipcode:{
+      type: DataTypes.INTEGER
     }
     
   });

@@ -12,53 +12,104 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 var request = require("request");
 
 //getting the list:
-var API1KEY = "0df5e88330d88cc67aa6056e35ac48e6";
-var Q = "paleo";
-
-var APIURL = "http://food2fork.com/api/search?key=" + API1KEY + "&q=" + Q;
 
 //getting searc by id:
-var rId = "679b03";
-var APIURL2 = "http://food2fork.com/api/get?key=" + API1KEY + "&rId=" + rId;
-
-
-var API2KEY = "5575c3141757734d74930b6d97e";
-var Q1 = "hiking";
-//api.meetup.com
-// /2/events
-
-
- //var APIURL3 = "https://www.meetup.com/meetup_api/search?key="
 
 
 // Routes
 // =============================================================
 module.exports = function (app) {
 
-  app.get("/test", function (req, res) {
-    
-    request.get(APIURL, function (err, body) {
+  app.get("/eats", function (req, res) {
+    request.get("http://localhost:8080/api/getjson/exampleS1.json", function (err, body) {
       var b = JSON.parse(body.body);
-      res.json(b);
+      var data = [];
+      // res.json(b);
+      for(var i=0; i<b.results.length; i++){
+        var thisR = {
+          title: b.results[i].title,
+          recipe_id: b.results[i].id,
+          image_url: b.baseUri+b.results[i].image
+        };
+        data.push(thisR);
+      }
+      res.render("eats2", {
+        page:{
+        title: "Reciepe List 2"},
+        boo: data});
+    });
+  });
+
+
+  app.get("/list", function (req, res) {
+    request.get("http://localhost:8080/api/getjson/example1.json", function (err, body) {
+      var b = JSON.parse(body.body);
+      var data = [];
+      // res.json(b);
+      for(var i=0; i<b.recipes.length; i++){
+        var thisR = {
+          title: b.recipes[i].title,
+          recipe_id: b.recipes[i].recipe_id,
+          image_url: b.recipes[i].image_url
+        };
+        data.push(thisR);
+      }
+      res.render("eats2", {
+        page:{
+        title: "Reciepe List"},
+        boo: data});
+    });
+  });
+
+
+  app.get("/recipe1", function (req, res) {
+    // rId = req.params.id;
+    request.get("http://localhost:8080/api/getjson/example2.json", function (err, body) {
+      var b = JSON.parse(body.body);
+      b = b.recipe;
+      var data = [];
+      // res.json(b);
+      var dataob = {
+        recipe_id: b.recipe_id,
+        image_url: b.image_url,
+        title: b.title,
+        ingredients: b.ingredients,
+        source_url: b.source_url
+      };
+
+      data.push(dataob);
+      // res.json(data);
+      res.render("recipe2", {
+        page:{
+        title: "Reciepe 1"},
+        boo: data});
     });
 
   });
 
-
-  app.get("/test2", function (req, res) {
-    request.get(APIURL2, function (err, body) {
+  app.get("/recipe", function (req, res) {
+    // rId = req.params.id;
+    request.get("http://localhost:8080/api/getjson/examplesS1Rid.json", function (err, body) {
       var b = JSON.parse(body.body);
-      res.json(b);
-    });
+      // b = b;
+      var data = [];
+      // res.json(b);
+      var dataob = {
+        recipe_id: b.id,
+        image_url: b.image,
+        title: b.title,
+        ingredients: b.extendedIngredients,
+        directions: b.instructions,
+        readyInMinutes: b.readyInMinutes
+      };
 
-  });
-
-  app.get("/events/:event/:zipcode", function (req, res) {
-    var APIURL3 = "https://api.meetup.com/2/open_venues?&sign=true&photo-host=public&text="+req.params.event+"&zip="+req.params.zipcode+"&country=usa&page=20&key="+ API2KEY + "&q1+=" + Q1;
-    console.log(APIURL3);
-    request.get(APIURL3, function (err, body) {
-      var b = JSON.parse(body.body);
-      res.json(b);
+      data.push(dataob);
+      // res.json(data);
+      res.render("recipe3", {
+        page:{
+        title: "Reciepe Test"},
+        boo: data
+      });
     });
 
   });
@@ -69,17 +120,29 @@ module.exports = function (app) {
     // res.sendFile(path.join(__dirname, "../public/blog.html"));
   });
 
+
+
   app.get("/signup", function (req, res) {
     res.render("signup");
 
   });
 
-  app.get("/login", function (req, res) {
-    res.render("login");
 
-  });
 
   app.get("/success", function (req, res) {
+
+    // if(!req.params.user || !req.params.pass){
+    //   //return true if empty
+    //   res.render("success");
+    // }else{
+    //   /// process the login automatically:
+    //   var userpass = {
+    //     user: req.params.user,
+    //     pass: req.params.pass
+    //   };
+    //   res.json(userpass);
+
+    // }
     res.render("success");
 
   });
@@ -89,15 +152,15 @@ module.exports = function (app) {
 
   });
 
-  app.get("/eats", function (req, res) {
-    res.render("eats");
+  // app.get("/eats", function (req, res) {
+  //   res.render("eats");
 
-  });
+  // });
 
-  app.get("/recipe", function (req, res) {
-    res.render("recipe");
+  // app.get("/recipe", function (req, res) {
+  //   res.render("recipe");
 
-  });
+  // });
 
   app.get("/activity", function (req, res) {
     res.render("activity");
@@ -130,9 +193,10 @@ module.exports = function (app) {
   app.get("/login", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/success");
+    } else {
+      res.render("login");
     }
-    res.render("login");
     // res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
