@@ -8,13 +8,7 @@ var express = require("express");
 var path = require("path");
 
 var isAuthenticated = require("../config/middleware/isAuthenticated");
-
 var request = require("request");
-
-//getting the list:
-
-//getting searc by id:
-
 
 // Routes
 // =============================================================
