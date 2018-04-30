@@ -248,8 +248,13 @@ module.exports = function (app) {
               addressFromVenue: true,
               group_name: b.events[i].group.name,
               group_address: b.events[i].group.localized_location,
+              group_url: b.events[i].group.urlname,
+              group_lat: b.events[i].group.lat,
+              group_lng: b.events[i].group.lon,
               venue_name: b.events[i].venue.name,
               venue_address: b.events[i].venue.address_1 + ", " + b.events[i].venue.city + ", " + b.events[i].venue.country,
+              venue_lat: b.events[i].venue.lat,
+              venue_lng: b.events[i].venue.lon,
               description: b.baseUri + b.events[i].description
             };
             data.push(thisR);
@@ -263,8 +268,13 @@ module.exports = function (app) {
               addressFromVenue: false,
               group_name: b.events[i].group.name,
               group_address: b.events[i].group.localized_location,
+              group_url: b.events[i].group.urlname,
+              group_lat: b.events[i].group.lat,
+              group_lng: b.events[i].group.lon,
               venue_name: "",
               venue_address: "",
+              venue_lat: "",
+              venue_lng: "",
               description: ""
             };
             data.push(thisR);
