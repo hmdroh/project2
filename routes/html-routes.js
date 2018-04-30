@@ -216,14 +216,12 @@ module.exports = function (app) {
 
 
   app.get("/activities", function (req, res) {
-
     var page = 100;
     var text = req.user.activity;
     var radius = 25.0;
     var lng = req.user.lng;
     var lat = req.user.lat;
     var key = process.env.MEETUP_KEY;
-
     var url =
       `https://api.meetup.com/find/upcoming_events?photo-host=public` +
       `&page=${page}` +
@@ -237,45 +235,42 @@ module.exports = function (app) {
       method: 'GET'
     }, function (err, body) {
       var b = JSON.parse(body.body);
-    
       var data = [];
       for (var i = 0; i < b.events.length; i++) {
-
-        if(b.events[i].local_date){
-        if (b.events[i].venue) {
-          var thisR = {
-            name: b.events[i].name,
-            id: b.events[i].id,
-            local_date: b.events[i].local_date,
-            local_time: b.events[i].local_time,
-            link: b.events[i].link,
-            addressFromVenue: true,
-            group_name: b.events[i].group.name,
-            group_address: b.events[i].group.localized_location,
-            venue_name: b.events[i].venue.name,
-            venue_address: b.events[i].venue.address_1 + ", " + b.events[i].venue.city + ", " + b.events[i].venue.country,
-            description: b.baseUri + b.events[i].description
-          };
-          data.push(thisR);
-        }else{
-          var thisR = {
-            name: b.events[i].name,
-            id: b.events[i].id,
-            local_date: b.events[i].local_date,
-            local_time: b.events[i].local_time,
-            link: b.events[i].link,
-            addressFromVenue: false,
-            group_name: b.events[i].group.name,
-            group_address: b.events[i].group.localized_location,
-            venue_name: "",
-            venue_address: "",
-            description: ""
-          };
-          data.push(thisR);
+        if (b.events[i].local_date) {
+          if (b.events[i].venue) {
+            var thisR = {
+              name: b.events[i].name,
+              id: b.events[i].id,
+              local_date: b.events[i].local_date,
+              local_time: b.events[i].local_time,
+              link: b.events[i].link,
+              addressFromVenue: true,
+              group_name: b.events[i].group.name,
+              group_address: b.events[i].group.localized_location,
+              venue_name: b.events[i].venue.name,
+              venue_address: b.events[i].venue.address_1 + ", " + b.events[i].venue.city + ", " + b.events[i].venue.country,
+              description: b.baseUri + b.events[i].description
+            };
+            data.push(thisR);
+          } else {
+            var thisR = {
+              name: b.events[i].name,
+              id: b.events[i].id,
+              local_date: b.events[i].local_date,
+              local_time: b.events[i].local_time,
+              link: b.events[i].link,
+              addressFromVenue: false,
+              group_name: b.events[i].group.name,
+              group_address: b.events[i].group.localized_location,
+              venue_name: "",
+              venue_address: "",
+              description: ""
+            };
+            data.push(thisR);
+          }
         }
       }
-      }
-
       if (parseInt(req.params.offset) + 1 > 1) {
         var firstOffset = false;
       } else {
@@ -289,9 +284,7 @@ module.exports = function (app) {
         },
         boo: data
       });
-
     });
-
 
   });
 
@@ -308,9 +301,9 @@ module.exports = function (app) {
   //   res.render("recipe");
   // });
 
-  // app.get("/activity", function (req, res) {
-  //   res.render("activity");
-  // });
+  app.get("/activity", function (req, res) {
+    res.render("activity");
+  });
 
   app.get("/favorites", function (req, res) {
     res.render("favorites");

@@ -39,7 +39,7 @@
             </div>
             <div class="col l8">
               <a href="/activity" id="title">{{name}}</a>
-              <p id="location">{{#if addressFromVenue}}{{venue_address}}{{/if}}</p>
+              <p id="location">{{#if addressFromVenue}}{{venue_address}}{{else}}{{group_address}}{{/if}}</p>
             </div>
             <div class="col l2">
               <i class="material-icons">favorite</i>
