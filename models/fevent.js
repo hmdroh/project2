@@ -14,12 +14,49 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    eventURL:{
+    name: {
       type: DataTypes.STRING
     },
-    eventDateTime:{
+    local_date: {
+      type: DataTypes.STRING
+    },
+    local_time: {
+      type: DataTypes.STRING
+    },
+    link: {
+      type: DataTypes.STRING
+    },
+    addressFromVenue: {
+      type: DataTypes.STRING
+    },
+    group_name: {
+      type: DataTypes.STRING
+    },
+    group_address: {
+      type: DataTypes.STRING
+    },
+    group_url: {
+      type: DataTypes.STRING
+    },
+    group_lat: {
+      type: DataTypes.STRING
+    },
+    group_lng: {
+      type: DataTypes.STRING
+    },
+    venue_name: {
+      type: DataTypes.STRING
+    },
+    venue_address: {
+      type: DataTypes.STRING
+    },
+    venue_lat: {
+      type: DataTypes.STRING
+    },
+    venue_lng: {
       type: DataTypes.STRING
     }
+
     
   });
   return Fevent;

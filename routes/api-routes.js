@@ -75,12 +75,25 @@ module.exports = function(app) {
       }else{
         //does not exits;
     meetup.getMeetupDataById(key,group_url,activity_id,function(data){
-      // res.json(data);
+ 
       db.Fevent.create({
         userId: req.user.id,
         eventId: req.params.id,
-        eventURL: req.params.url,
-        eventDateTime: data[0].local_date + " " + data[0].local_time
+        name: data[0].name,
+        local_date: data[0].local_date,
+        local_time: data[0].local_time,
+        link: data[0].link,
+        addressFromVenue: data[0].addressFromVenue,
+        group_name: data[0].group_name,
+        group_address: data[0].group_address,
+        group_url: data[0].group_url,
+        group_lat: data[0].group_lat,
+        group_lng: data[0].group_lng,
+        venue_name: data[0].venue_name,
+        venue_address: data[0].venue_address,
+        venue_lat: data[0].venue_lat,
+        venue_lng: data[0].venue_lng
+        
       }).then(function() {
         res.redirect("/activities");
       }).catch(function(err) {

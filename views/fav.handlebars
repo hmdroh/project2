@@ -1,0 +1,25 @@
+
+<div class="container" id="recipe-body">
+
+
+
+<div class="row">
+{{#each boo}}
+    <div class="col s12 m6 l6">
+      <div class="card">
+        <div class="card-content">
+          <div class="row">
+            <div class="col l2" id="date">
+              <p>{{local_date}} {{local_time}}</p>
+            </div>
+            <div class="col l8">
+              <a href="/activity/{{group_url}}/{{eventId}}" id="title">{{name}}</a>
+              <p id="location">{{#if addressFromVenue}}{{venue_address}}{{else}}{{group_address}}{{/if}}</p>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+{{/each}}
+  </div>
