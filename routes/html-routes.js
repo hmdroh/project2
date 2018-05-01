@@ -76,9 +76,7 @@ module.exports = function (app) {
 
 
   app.get("/success", function (req, res) {
-
     res.render("success");
-
   });
 
 
@@ -119,7 +117,6 @@ module.exports = function (app) {
         userId: req.user.id
       }
     }).then(function(sqldata){
-
       res.render("fav", {
         page: {
           title: "Favorite Events",
@@ -127,7 +124,6 @@ module.exports = function (app) {
         },
         boo: sqldata
       });
-
     });
   });
 
@@ -160,6 +156,8 @@ module.exports = function (app) {
   app.get("/recipe/:id", function (req, res) {
     rId = req.params.id;
     spooncontrol.getSpoonDataById(process.env.SPOONACULAR_KEY,rId,function(data){
+      // res.json(data);
+      // return false;
       res.render("recipe3", {
         page: {
           title: "Reciepe Test"
@@ -193,6 +191,4 @@ module.exports = function (app) {
     res.render("members");
     // res.sendFile(path.join(__dirname, "../public/members.html"));
   });
-
-
 };
