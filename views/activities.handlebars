@@ -1,8 +1,8 @@
 <div class="container" id="recipe-body">
 
 
-<div class="row">
-{{#each boo}}
+  <div class="row">
+    {{#each boo}}
     <div class="col s12 m6 l6">
       <div class="card">
         <div class="card-content">
@@ -15,11 +15,13 @@
               <p id="location">{{#if addressFromVenue}}{{venue_address}}{{else}}{{group_address}}{{/if}}</p>
             </div>
             <div class="col l2">
-              <a href="/api/fevent/{{id}}/{{group_url}}"><i class="material-icons">{{#if Fav}}favorite{{else}}favorite_border{{/if}}</i></a>
+              <a href="/api/fevent/{{id}}/{{group_url}}">
+                <i class="material-icons">{{#if Fav}}favorite{{else}}favorite_border{{/if}}</i>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
-{{/each}}
+    {{/each}}
   </div>

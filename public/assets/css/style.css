@@ -71,12 +71,6 @@ i {
   font-family: 'Montserrat', sans-serif;
 }
 
-
-.input-field input[type=text]:focus {
-  border-bottom: 1px solid #607d8b !important;
-  box-shadow: 0 1px 0 0 #607d8b !important;
-}
-
 ul.dropdown-content.select-dropdown li:not(.disabled) span {
   color: #607d8b;
 }
