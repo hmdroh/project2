@@ -20,10 +20,11 @@
                 <a href="/favorites">Favorites</a>
             </li>
             <li>|</li>{{/if}}
+            {{#unless isLoggedIn}}
             <li>
                 <a href="/signup">Sign-up</a>
             </li>
-            <li>|</li>
+            <li>|</li>{{/unless}}
             {{#if isLoggedIn}}
             <li>
                 <a href="/logout">Log out</a>
