@@ -13,6 +13,13 @@ var request = require("request");
 // Routes
 // =============================================================
 module.exports = function (app) {
+  
+  app.get("/", function (req, res) {
+    var hbsObj = {
+      isLoggedIn: (req.session.passport ? true : false)
+    }
+    res.render("home", hbsObj);
+  });
 
   app.get("/eats", function (req, res) {
     res.redirect("/eats/1");
@@ -182,10 +189,6 @@ module.exports = function (app) {
   });
 
 
-  app.get("/", function (req, res) {
-    res.render("home");
-    // res.sendFile(path.join(__dirname, "../public/blog.html"));
-  });
 
 
 
@@ -210,7 +213,11 @@ module.exports = function (app) {
     //   res.json(userpass);
 
     // }
-    res.render("success");
+
+    var hbsObj = {
+      isLoggedIn: (req.session.passport ? true : false)
+    }
+    res.render("success", hbsObj);
 
   });
 
