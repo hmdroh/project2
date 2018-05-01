@@ -1,191 +1,62 @@
-<<<<<<< HEAD
-<nav>
-<<<<<<< HEAD
-  <div class="nav-wrapper">
-    <a href="/" class="brand-logo">
-      <img src="assets/img/003-wellness-logo.png">
-    </a>
-    <a href="#" data-target="mobile-demo" class="sidenav-trigger">
-      <i class="material-icons menu">menu</i>
-    </a>
-    <ul class="right hide-on-med-and-down">
-      <li>
-        <a href="/activites">Activities</a>
-      </li>
-      <li>|</li>
-      <li>
-        <a href="/eats">Healthy Eating</a>
-      </li>
-      <li>|</li>
-      <li>
-        <a href="/signup">Sign-up</a>
-      </li>
-      <li>|</li>
-      <li>
-        <a href="/login">Login</a>
-      </li>
-=======
-        <div class="nav-wrapper">
-        <a href="/" class="brand-logo"><img src="/assets/img/003-wellness-logo.png"></a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons menu">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="/activities">Activities</a></li>
-                <li>|</li>
-                <li><a href="/eats">Healthy Eating</a></li>
-                <li>|</li>
-                <li><a href="/signup">Sign-up</a></li>
-                <li>|</li>
-                <li><a href="/login">Login</a></li>
-            </ul>
-        </div>
-    </nav>
+<div class="container">
+  <div class="row">
+    <form class="signup col s12">
+      <h4>Sign-up</h4>
+      <div class="input-field col s12 m6 l6">
+        <input id="email-input" type="email" class="form-control">
+        <label for="email-input">Email
+          <span class="red-text" id="email_danger" style="display:none;"> *</span>
+        </label>
 
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="/activities">Activities</a></li>
-        <li><a href="/eats">Healthy Eating</a></li>
-        <li><a href="/signup">Sign-up</a></li>
-        <li><a href="/login">Login</a></li>
->>>>>>> c68fe10830547603f74fea5d5fdb38a615b03a46
-    </ul>
-  </div>
-</nav>
 
-<ul class="sidenav" id="mobile-demo">
-  <li>
-    <a href="/activities">Activities</a>
-  </li>
-  <li>
-    <a href="/eats">Healthy Eating</a>
-  </li>
-  <li>
-    <a href="/signup">Sign-up</a>
-  </li>
-  <li>
-    <a href="/login">Login</a>
-  </li>
-</ul>
-=======
->>>>>>> 2a1a1135672731279755cb86aa99b67b6691e804
-
-    <div class="container">
-    <div class="row">
-        <form class="signup col s12">
-            <h4>Sign-up</h4>
-          <div class="input-field col s12 m6 l6"> 
-            <input id="email-input" type="email" class="form-control">
-            <label for="email-input">Email<span class="red-text" id="email_danger" style="display:none;"> *</span></label>
-        
-            
-          </div>
-          <div class="input-field col s12 m6 l6">
-            <input id="password-input" type="password" class="form-control">
-            <label for="password-input">Password<span class="red-text" id="password_danger" style="display:none;"> *</span></label>
-          </div>
-          {{!-- <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span> <span class="msg"></span>
-          </div> --}}
-          <div class="input-field col s12 m6 l6">
-            <input id="first_name" type="text" class="form-control">
-            <label for="first_name">First Name<span class="red-text" id="first_name_danger" style="display:none;"> *</span></label>
-          </div>
-          <div class="input-field col s12 m6 l6">
-            <input id="last_name" type="text" class="form-control">
-            <label for="last_name">Last Name<span class="red-text" id="last_name_danger" style="display:none;"> *</span></label>
-          </div>
-          
-          <div class="input-field col s12 m6 l6">
-            <input id="display-name" type="text" class="form-control">
-            <label for="display-name">Nickname<span class="red-text" id="display-name_danger" style="display:none;"> *</span></label>
-          </div>
-
-          <div class="input-field col s12 m6 l6">
-            <input type="text" class="datepicker" id="DOB">
-            <label for="DOB">Date of Birth (MM/DD/YYYY)<span class="red-text" id="DOB_danger" style="display:none;"> *</span></label>
-          </div>
-
-          <div class="input-field col s12 m6 l6">
-            <select class="gender" name="gender" id="gender">
-                <option value="" disabled selected></option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-            </select>
-            <label for="gender">Gender<span class="red-text" id="gender_danger" style="display:none;"> *</span></label>
-          </div>
-
-          <div class="input-field col s12 m6 l6">
-            <select class="activity-level" id="activity-level" name="activity-level">
-                <option value="" disabled selected></option>
-                <option value="1">1 (Not active)</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5 (Very active)</option>
-            </select>
-            <label for="activity-level">Activity Level<span class="red-text" id="activity-level_danger" style="display:none;"> *</span></label>
-          </div>
-
-          <div class="input-field col s12 m6 l6">
-            <select multiple class="activities" name="activities" id="activities">
-                <option value="walking">Walking</option>
-                <option value="running">Running</option>
-                <option value="hiking">Hiking</option>
-                <option value="biking">Biking</option>
-                <option value="swimming">Swimming</option>
-                <option value="yoga">Yoga</option>
-                <option value="martial-arts">Martial Arts</option>
-            </select>
-            <label for="activities">Activities<span class="red-text" id="activities_danger" style="display:none;"> *</span></label>
-          </div>
-
-          <div class="input-field col s12 m6 l6">
-            <select multiple class="food" name="food" id="food">
-                <optgroup label="Dietary">
-                    <option value="gluten-free">Gluten Free</option>
-                    <option value="dairy-free">Dairy Free</option>
-                    <option value="vegan">Vegan</option>
-                    <option value="vegetarian">Vegetarian</option>
-                    <option value="paleo">Paleo</option>
-                    <option value="kosher">Kosher</option>
-                    <option value="none">None</option>
-                </optgroup>
-            </select>
-            <label for="food">Food Restrictions<span class="red-text" id="food_danger" style="display:none;"> *</span></label>
-          </div>
-
-            <div class="input-field col s12 m6 l6">
-            <select multiple class="allergies" name="allergies" id="allergies">
-                <optgroup label="Allergies">
-                    <option value="nuts">Nuts</option>
-                    <option value="shellfish">Shellfish</option>
-                    <option value="wheat">Wheat</option>
-                    <option value="soy">Soy</option>
-                    <option value="eggs">Eggs</option>
-                    <option value="none">None</option>
-                </optgroup>
-            </select>
-            <label for="allergies">Food Allergies<span class="red-text" id="allergies_danger" style="display:none;"> *</span></label>
-          </div>
-
-          <div class="input-field col s12 m6 l6">
-            <input id="zip-code" type="text" class="form-control">
-            <a class="waves-effect waves-light btn-small" id="getzipcode">Auto-Detect</a>
-            <label for="zip-code">Zip Code<span class="red-text" id="zip_danger" style="display:none;"> *</span></label>
-          </div>
-        
-        <div class="row">
-          <div class="col s12 m12 l12">
-            <button type="submit" class="btn btn-default">Sign-Up</button>
-          </div>
-        </div>
-        </form>
-        {{!-- <br />
-        <p>Or log in <a href="/login">here</a></p> --}}
+      </div>
+      <div class="input-field col s12 m6 l6">
+        <input id="password-input" type="password" class="form-control">
+        <label for="password-input">Password
+          <span class="red-text" id="password_danger" style="display:none;"> *</span>
+        </label>
+      </div>
+      
+      <div class="input-field col s12 m6 l6">
+        <input id="first_name" type="text" class="form-control">
+        <label for="first_name">First Name
+          <span class="red-text" id="first_name_danger" style="display:none;"> *</span>
+        </label>
+      </div>
+      <div class="input-field col s12 m6 l6">
+        <input id="last_name" type="text" class="form-control">
+        <label for="last_name">Last Name
+          <span class="red-text" id="last_name_danger" style="display:none;"> *</span>
+        </label>
       </div>
 
       <div class="input-field col s12 m6 l6">
-        <p>Activity Level</p>
-        <select class="activity-level">
+        <input id="display-name" type="text" class="form-control">
+        <label for="display-name">Nickname
+          <span class="red-text" id="display-name_danger" style="display:none;"> *</span>
+        </label>
+      </div>
+
+      <div class="input-field col s12 m6 l6">
+        <input type="text" class="datepicker" id="DOB">
+        <label for="DOB">Date of Birth (MM/DD/YYYY)
+          <span class="red-text" id="DOB_danger" style="display:none;"> *</span>
+        </label>
+      </div>
+
+      <div class="input-field col s12 m6 l6">
+        <select class="gender" name="gender" id="gender">
+          <option value="" disabled selected></option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+        </select>
+        <label for="gender">Gender
+          <span class="red-text" id="gender_danger" style="display:none;"> *</span>
+        </label>
+      </div>
+
+      <div class="input-field col s12 m6 l6">
+        <select class="activity-level" id="activity-level" name="activity-level">
           <option value="" disabled selected></option>
           <option value="1">1 (Not active)</option>
           <option value="2">2</option>
@@ -193,25 +64,28 @@
           <option value="4">4</option>
           <option value="5">5 (Very active)</option>
         </select>
+        <label for="activity-level">Activity Level
+          <span class="red-text" id="activity-level_danger" style="display:none;"> *</span>
+        </label>
       </div>
 
       <div class="input-field col s12 m6 l6">
-        <p>Activities, choose all that apply</p>
-        <select multiple class="activities">
+        <select multiple class="activities" name="activities" id="activities">
           <option value="walking">Walking</option>
           <option value="running">Running</option>
           <option value="hiking">Hiking</option>
           <option value="biking">Biking</option>
           <option value="swimming">Swimming</option>
-          <option value="soccer">Yoga</option>
-          <option value="basketball">Martial Arts</option>
+          <option value="yoga">Yoga</option>
+          <option value="martial-arts">Martial Arts</option>
         </select>
+        <label for="activities">Activities
+          <span class="red-text" id="activities_danger" style="display:none;"> *</span>
+        </label>
       </div>
 
       <div class="input-field col s12 m6 l6">
-        <p>Food Restrictions</p>
-        <select multiple class="activities">
-          <option value="basketball">None</option>
+        <select multiple class="food" name="food" id="food">
           <optgroup label="Dietary">
             <option value="gluten-free">Gluten Free</option>
             <option value="dairy-free">Dairy Free</option>
@@ -219,29 +93,44 @@
             <option value="vegetarian">Vegetarian</option>
             <option value="paleo">Paleo</option>
             <option value="kosher">Kosher</option>
-            {{!--
-            <option value="basketball">None</option> --}}
+            <option value="none">None</option>
           </optgroup>
+        </select>
+        <label for="food">Food Restrictions
+          <span class="red-text" id="food_danger" style="display:none;"> *</span>
+        </label>
+      </div>
+
+      <div class="input-field col s12 m6 l6">
+        <select multiple class="allergies" name="allergies" id="allergies">
           <optgroup label="Allergies">
             <option value="nuts">Nuts</option>
             <option value="shellfish">Shellfish</option>
             <option value="wheat">Wheat</option>
             <option value="soy">Soy</option>
             <option value="eggs">Eggs</option>
-            {{!--
-            <option value="basketball">None</option> --}}
+            <option value="none">None</option>
           </optgroup>
         </select>
+        <label for="allergies">Food Allergies
+          <span class="red-text" id="allergies_danger" style="display:none;"> *</span>
+        </label>
       </div>
 
-      <div class="col s12 m6 l6">
-        <button type="submit" class="btn btn-default">Sign Up</button>
+      <div class="input-field col s12 m6 l6">
+        <input id="zip-code" type="text" class="form-control">
+        <a class="waves-effect waves-light btn-small" id="getzipcode">Auto-Detect</a>
+        <label for="zip-code">Zip Code
+          <span class="red-text" id="zip_danger" style="display:none;"> *</span>
+        </label>
+      </div>
+
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <button type="submit" class="btn btn-default">Sign-Up</button>
+        </div>
       </div>
     </form>
-    {{!--
-    <br />
-    <p>Or log in
-      <a href="/login">here</a>
-    </p> --}}
+  
   </div>
 </div>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
@@ -15,16 +16,11 @@
 </head>
 
 <body>
-    {{#if isLoggedIn}} 
-    {{> data/navbar isLoggedIn=true}}
-    {{/if}}
-    {{#unless isLoggedIn}} 
-    {{> data/navbar isLoggedIn=false}}
-    {{/unless}}
+    {{#if isLoggedIn}} {{> data/navbar isLoggedIn=true}} {{/if}} {{#unless isLoggedIn}} {{> data/navbar isLoggedIn=false}} {{/unless}}
     <main>
-		{{{ body }}}
+        {{{ body }}}
     </main>
-	<footer class="page-footer">
+    <footer class="page-footer">
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
@@ -46,17 +42,21 @@
                 </div>
                 <div class="col l4 offset-l2 s12">
                     <ul>
-                        <li><a class="text-lighten-3" href="/api">LiveActive API</a></li>
-                        <li><a class="text-lighten-3" href="https://github.com/hmdroh/project2">GitHub</a></li>
+                        <li>
+                            <a class="text-lighten-3" href="/api">LiveActive API</a>
+                        </li>
+                        <li>
+                            <a class="text-lighten-3" href="https://github.com/hmdroh/project2">GitHub</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="footer-copyright">
-                <div class="container cp">
-                        © 2018 LiveActive
-                  </div>
+            <div class="container cp">
+                © 2018 LiveActive
             </div>
+        </div>
     </footer>
 </body>
 
