@@ -17,22 +17,22 @@ var meetup = require("../controllers/meetup");
 var zipcodecontroller = require("../controllers/zipcodecontroller");
 // Routes
 // =============================================================
-module.exports = function(app) {
+module.exports = function (app) {
 
 
-  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+  app.post("/api/login", passport.authenticate("local"), function (req, res) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
-    res.json("/success");
+    res.json("/");
 
   });
 
-  app.post("/api/signup", function(req, res) {
+  app.post("/api/signup", function (req, res) {
     // console.log(req.body);
     //calculating lat and lng:
     var zipcode = req.body.zipcode;
-    zipcodecontroller.getlongLat(process.env.ZIPCODEAPI,zipcode, function(b){
+    zipcodecontroller.getlongLat(process.env.ZIPCODEAPI, zipcode, function (b) {
 
       db.User.create({
         email: req.body.email,
@@ -49,10 +49,10 @@ module.exports = function(app) {
         zipcode: req.body.zipcode,
         lat: b[zipcode].lat,
         lng: b[zipcode].lng
-  
-      }).then(function() {
+
+      }).then(function () {
         res.redirect(307, "/api/login");
-      }).catch(function(err) {
+      }).catch(function (err) {
         console.log(err);
         res.json(err);
         // res.status(422).json(err.errors[0].message);
@@ -60,164 +60,58 @@ module.exports = function(app) {
 
     });
 
-    
+
   });
 
 
-  app.get("/api/fevent/:id/:url", function(req, res) {
+  app.get("/api/fevent/:id/:url", function (req, res) {
     var activity_id = req.params.id;
     var group_url = req.params.url;
     var key = process.env.MEETUP_KEY;
 
-    var isFav = eventcontroller.isFavorate(req.user.id, activity_id, function(cb){
-      if(cb){
+    var isFav = eventcontroller.isFavorate(req.user.id, activity_id, function (cb) {
+      if (cb) {
         res.redirect("/activities");
-      }else{
+      } else {
         //does not exits;
-    meetup.getMeetupDataById(key,group_url,activity_id,function(data){
- 
-      db.Fevent.create({
-        userId: req.user.id,
-        eventId: req.params.id,
-        name: data[0].name,
-        local_date: data[0].local_date,
-        local_time: data[0].local_time,
-        link: data[0].link,
-        addressFromVenue: data[0].addressFromVenue,
-        group_name: data[0].group_name,
-        group_address: data[0].group_address,
-        group_url: data[0].group_url,
-        group_lat: data[0].group_lat,
-        group_lng: data[0].group_lng,
-        venue_name: data[0].venue_name,
-        venue_address: data[0].venue_address,
-        venue_lat: data[0].venue_lat,
-        venue_lng: data[0].venue_lng
-        
-      }).then(function() {
-        res.redirect("/activities");
-      }).catch(function(err) {
-        console.log(err);
-        // res.json(err);
-        // res.status(422).json(err.errors[0].message);
-      });
-    
-    
-    })
-    
+        meetup.getMeetupDataById(key, group_url, activity_id, function (data) {
+
+          db.Fevent.create({
+            userId: req.user.id,
+            eventId: req.params.id,
+            name: data[0].name,
+            local_date: data[0].local_date,
+            local_time: data[0].local_time,
+            link: data[0].link,
+            addressFromVenue: data[0].addressFromVenue,
+            group_name: data[0].group_name,
+            group_address: data[0].group_address,
+            group_url: data[0].group_url,
+            group_lat: data[0].group_lat,
+            group_lng: data[0].group_lng,
+            venue_name: data[0].venue_name,
+            venue_address: data[0].venue_address,
+            venue_lat: data[0].venue_lat,
+            venue_lng: data[0].venue_lng
+
+          }).then(function () {
+            res.redirect("/activities");
+          }).catch(function (err) {
+            console.log(err);
+            // res.json(err);
+            // res.status(422).json(err.errors[0].message);
+          });
+
+
+        })
+
       }
     });
   });
 
-
-
-
   // Route for logging user out
-  app.get("/logout", function(req, res) {
+  app.get("/logout", function (req, res) {
     req.logout();
-    res.redirect("/");
+    res.render("home");
   });
-
-  // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", function(req, res) {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.end(false);
-    }
-    else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id,
-        firstname: req.user.firstname,
-        lastname: req.user.lastname,
-        displayname: req.user.displayname,
-        gender: req.user.gender,
-        dob: req.user.dob,
-        activitylevel: req.user.activitylevel,
-        activity: req.user.activity,
-        allergies: req.user.allergies,
-        dietaryres: req.user.dietaryres,
-        zipcode: req.user.zipcode,
-        lat: req.user.lat,
-        lng: req.user.lng
-      });
-    }
-  });
-
-///testing purpose:
-  app.get("/api/getjson/:filename", function(req, res) {
-    if(req.params.filename){
-    res.sendFile(path.join(__dirname,`../public/jsons/${req.params.filename}`));
-    }else{
-      res.end(false);
-    }
-  });
-
-  /////////////////////////////////////////end of passport api
-
-
-
-  // GET route for getting all of the posts
-  // app.get("/api/posts", function(req, res) {
-  //   // var query = {};
-  //   // if (req.query.author_id) {
-  //   //   query.AuthorId = req.query.author_id;
-  //   // }
-  //   // // 1. Add a join here to include all of the Authors to these posts
-  //   // db.Post.findAll({
-  //   //   include: [db.Author],
-  //   //   where: query
-  //   // }).then(function(dbPost) {
-  //   //   res.json(dbPost);
-  //   // });
-  // });
-
-  // // Get route for retrieving a single post
-  // app.get("/api/posts/:id", function(req, res) {
-  //   // 2. Add a join here to include the Author who wrote the Post
-  //   // db.Post.findOne({
-  //   //   include: [db.Author],
-  //   //   where: {
-  //   //     id: req.params.id
-  //   //   }
-  //   // }).then(function(dbPost) {
-  //   //   console.log(dbPost);
-  //   //   res.json(dbPost);
-  //   // });
-  // });
-
-  // // POST route for saving a new post
-  // app.post("/api/posts", function(req, res) {
-  //   // db.Post.create(req.body).then(function(dbPost) {
-  //   //   res.json(dbPost);
-  //   // });
-  // });
-
-  // // DELETE route for deleting posts
-  // app.delete("/api/posts/:id", function(req, res) {
-  //   // db.Post.destroy({
-  //   //   where: {
-  //   //     id: req.params.id
-  //   //   }
-  //   // }).then(function(dbPost) {
-  //   //   res.json(dbPost);
-  //   // });
-  // });
-
-  // // PUT route for updating posts
-  // app.put("/api/posts", function(req, res) {
-  //   // db.Post.update(
-  //   //   req.body,
-  //   //   {
-  //   //     where: {
-  //   //       id: req.body.id
-  //   //     }
-  //   //   }).then(function(dbPost) {
-  //   //   res.json(dbPost);
-  //   // });
-  // });
-
-
 };

@@ -1,4 +1,3 @@
-
 // *********************************************************************************
 // html-routes.js - this file offers a set of routes for sending users to the various html pages
 // *********************************************************************************
@@ -19,121 +18,126 @@ var db = require("../models");
 // Routes
 // =============================================================
 module.exports = function (app) {
-  
+
   app.get("/", function (req, res) {
-    var hbsObj = {
-      isLoggedIn: (req.session.passport ? true : false)
-    }
-    res.render("home", hbsObj);
+
+    res.render("home", { isLoggedIn: (req.session.passport ? true : false) });
   });
 
-  app.get("/eats", function (req, res) {
+  app.get("/eats", isAuthenticated, function (req, res) {
     res.redirect("/eats/1");
   });
 
   app.get("/eats/:offset", function (req, res) {
+    if (!req.user) {
+      res.redirect("/login");
+    } else {
+      var query = "healthy"; //required
+      var number = 20;
+      var offset = (parseInt(req.params.offset) - 1) * number;
+      var type = "";
+      var intolerances = "";
+      var excludeIngredients = req.user.allergies;
+      var diet = req.user.dietaryres;
+      var cuisine = "";
 
-    var query = "healthy"; //required
-    var number = 20;
-    var offset = (parseInt(req.params.offset) - 1) * number;
-    var type = "";
-    var intolerances = "";
-    var excludeIngredients = req.user.allergies;
-    var diet = req.user.dietaryres;
-    var cuisine = "";
+      spooncontrol.getSpoonData(query, number, offset, type, intolerances, excludeIngredients, diet, cuisine, function (data) {
 
-    spooncontrol.getSpoonData(query, number, offset,type,intolerances,excludeIngredients,diet,cuisine, function(data){
-   
-      if (parseInt(req.params.offset) + 1 > 1) {
-        var firstOffset = false;
-      } else {
-        var firstOffset = true;
-      }
-      res.render("eats", {
-        page: {
-          title: "Reciepe List from spoon-",
-          nextOffset: parseInt(req.params.offset) + 1,
-          firstOffset: firstOffset
-        },
-        boo: data
+        if (parseInt(req.params.offset) + 1 > 1) {
+          var firstOffset = false;
+        } else {
+          var firstOffset = true;
+        }
+        res.render("eats", {
+          page: {
+            title: "Eats",
+            nextOffset: parseInt(req.params.offset) + 1,
+            firstOffset: firstOffset
+          },
+          boo: data,
+          isLoggedIn: (req.session.passport ? true : false)
+        });
+
       });
 
-    });
-
-
+    }
   });
-
-  app.get("/", function (req, res) {
-    res.render("home");
-  });
-
 
 
   app.get("/signup", function (req, res) {
     res.render("signup");
   });
 
+  app.get("/success", isAuthenticated, function (req, res) {
+    var hbsObj = {
+      isLoggedIn: (req.session.passport ? true : false)
+    }
+    res.render("success", hbsObj);
 
-
-  app.get("/success", function (req, res) {
-    res.render("success");
   });
 
 
-  app.get("/activities", function (req, res) {
-    var page = 100;
-    var text = req.user.activity;
-    var radius = 25.0;
-    var lng = req.user.lng;
-    var lat = req.user.lat;
-    var key = process.env.MEETUP_KEY;
-    meetup.getMeetupData(key, page, text,radius,lng,lat,key, function(data){
+  app.get("/activities", isAuthenticated, function (req, res) {
+    if (!req.user) {
+      res.redirect("/");
+    } else {
+      var page = 100;
+      var text = req.user.activity;
+      var radius = 25.0;
+      var lng = req.user.lng;
+      var lat = req.user.lat;
+      var key = process.env.MEETUP_KEY;
+      meetup.getMeetupData(key, page, text, radius, lng, lat, key, function (data) {
 
-      if (parseInt(req.params.offset) + 1 > 1) {
-        var firstOffset = false;
-      } else {
-        var firstOffset = true;
-      }
+        if (parseInt(req.params.offset) + 1 > 1) {
+          var firstOffset = false;
+        } else {
+          var firstOffset = true;
+        }
 
-      res.render("activities", {
-        page: {
-          title: "List of events",
-          nextOffset: parseInt(req.params.offset) + 1,
-          firstOffset: firstOffset
-        },
-        boo: data
+        res.render("activities", {
+          page: {
+            title: "Activities",
+            nextOffset: parseInt(req.params.offset) + 1,
+            firstOffset: firstOffset
+          },
+          boo: data,
+          isLoggedIn: (req.session.passport ? true : false)
+        });
       });
-    });
-
+    }
   });
 
 
 
-  app.get("/favorites", function (req, res) {
+  app.get("/favorites", isAuthenticated, function (req, res) {
     var key = process.env.MEETUP_KEY;
 
     db.Fevent.findAll({
-      where:{
+      where: {
         userId: req.user.id
       }
-    }).then(function(sqldata){
+    }).then(function (sqldata) {
+
       res.render("fav", {
         page: {
           title: "Favorite Events",
           nextOffset: parseInt(req.params.offset) + 1
         },
-        boo: sqldata
+        boo: sqldata,
+        isLoggedIn: (req.session.passport ? true : false)
       });
     });
   });
 
 
-  app.get("/activity/:url/:id", function (req, res) {
+  app.get("/activity/:url/:id", isAuthenticated, function (req, res) {
+
     var activity_id = req.params.id;
     var group_url = req.params.url;
 
     var key = process.env.MEETUP_KEY;
-    meetup.getMeetupDataById(key,group_url,activity_id,function(data){
+    meetup.getMeetupDataById(key, group_url, activity_id, function (data) {
 
       if (parseInt(req.params.offset) + 1 > 1) {
         var firstOffset = false;
@@ -146,35 +150,33 @@ module.exports = function (app) {
           nextOffset: parseInt(req.params.offset) + 1,
           firstOffset: firstOffset
         },
-        boo: data
+        boo: data,
+        isLoggedIn: (req.session.passport ? true : false)
       });
     });
 
   });
 
 
-  app.get("/recipe/:id", function (req, res) {
+  app.get("/recipe/:id", isAuthenticated, function (req, res) {
     rId = req.params.id;
-    spooncontrol.getSpoonDataById(process.env.SPOONACULAR_KEY,rId,function(data){
-      // res.json(data);
-      // return false;
+    spooncontrol.getSpoonDataById(process.env.SPOONACULAR_KEY, rId, function (data) {
       res.render("recipe3", {
         page: {
-          title: "Reciepe Test"
+          title: "Recipe"
         },
-        boo: data
+        boo: data,
+        isLoggedIn: (req.session.passport ? true : false)
       });
     });
 
   });
 
   //Passport routes to add to regaular paths
-
-
   app.get("/login", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/success");
+      res.redirect("/");
     } else {
       res.render("login");
     }
