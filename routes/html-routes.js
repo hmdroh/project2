@@ -127,7 +127,6 @@ module.exports = function (app) {
         boo: sqldata,
         isLoggedIn: (req.session.passport ? true : false)
       });
-
     });
   });
 
@@ -194,5 +193,4 @@ module.exports = function (app) {
     res.render("members");
     // res.sendFile(path.join(__dirname, "../public/members.html"));
   });
-
 };
