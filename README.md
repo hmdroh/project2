@@ -32,6 +32,7 @@ Coded on Visual Studio Code using HTML, CSS Marterialize
 javascript, jQuery, handlebars, sequelize, node.js, passport, JSON, REST APIs 
 
 Acknowledgments
+<!-- Add contributors-->
 Mikaela - UI/UX, Concept development, 
 Hamed - Backend development, 
 Clayton - Research APIs, Concept Development, 

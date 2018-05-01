@@ -12,7 +12,9 @@ var path = require("path");
 
 var passport = require("../config/passport");
 var request = require("request");
-
+var eventcontroller = require("../controllers/eventcontroller");
+var meetup = require("../controllers/meetup");
+var zipcodecontroller = require("../controllers/zipcodecontroller");
 // Routes
 // =============================================================
 module.exports = function(app) {
@@ -23,14 +25,14 @@ module.exports = function(app) {
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
     res.json("/success");
+
   });
 
   app.post("/api/signup", function(req, res) {
     // console.log(req.body);
     //calculating lat and lng:
     var zipcode = req.body.zipcode;
-    request.get(`https://www.zipcodeapi.com/rest/${process.env.ZIPCODEAPI}/multi-info.json/${zipcode}/degrees`, function(err,body){
-      var b = JSON.parse(body.body);
+    zipcodecontroller.getlongLat(process.env.ZIPCODEAPI,zipcode, function(b){
 
       db.User.create({
         email: req.body.email,
@@ -62,7 +64,37 @@ module.exports = function(app) {
   });
 
 
+  app.get("/api/fevent/:id/:url", function(req, res) {
+    var activity_id = req.params.id;
+    var group_url = req.params.url;
+    var key = process.env.MEETUP_KEY;
 
+    var isFav = eventcontroller.isFavorate(req.user.id, activity_id, function(cb){
+      if(cb){
+        res.redirect("/activities");
+      }else{
+        //does not exits;
+    meetup.getMeetupDataById(key,group_url,activity_id,function(data){
+      // res.json(data);
+      db.Fevent.create({
+        userId: req.user.id,
+        eventId: req.params.id,
+        eventURL: req.params.url,
+        eventDateTime: data[0].local_date + " " + data[0].local_time
+      }).then(function() {
+        res.redirect("/activities");
+      }).catch(function(err) {
+        console.log(err);
+        // res.json(err);
+        // res.status(422).json(err.errors[0].message);
+      });
+    
+    
+    })
+    
+      }
+    });
+  });
 
 
 
