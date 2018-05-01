@@ -19,6 +19,13 @@ var db = require("../models");
 // Routes
 // =============================================================
 module.exports = function (app) {
+  
+  app.get("/", function (req, res) {
+    var hbsObj = {
+      isLoggedIn: (req.session.passport ? true : false)
+    }
+    res.render("home", hbsObj);
+  });
 
   app.get("/eats", function (req, res) {
     res.redirect("/eats/1");

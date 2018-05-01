@@ -4,9 +4,10 @@ $(document).ready(function () {
     $('.parallax').parallax();
     
 
-    $("#DOB").datepicker();
-
-
+    $(".datepicker").datepicker({
+        yearRange: [1918, 2018],
+        maxDate: new Date()
+    });
 
 
     $("#getzipcode").on("click", function () {
