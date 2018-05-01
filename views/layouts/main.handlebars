@@ -15,8 +15,12 @@
 </head>
 
 <body>
+    {{#if isLoggedIn}} 
     {{> data/navbar isLoggedIn=true}}
-
+    {{/if}}
+    {{#unless isLoggedIn}} 
+    {{> data/navbar isLoggedIn=false}}
+    {{/unless}}
     <main>
 		{{{ body }}}
     </main>
