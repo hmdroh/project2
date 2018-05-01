@@ -1,17 +1,16 @@
-
 {{#each boo}}
 <div class="container" id="recipe">
 
   <div class="row">
-      <div class="col s12 m6 l6">
-        <h4>{{title}}</h4>
-      </div>
-  </div>  
-<div class="row">
     <div class="col s12 m6 l6">
-        <h6>{{readyInMinutes}} minutes to ready.</h6>
+      <h4>{{title}}</h4>
     </div>
-</div>
+  </div>
+  <div class="row">
+    <div class="col s12 m6 l6">
+      <h6>{{readyInMinutes}} minutes to ready.</h6>
+    </div>
+  </div>
   <div class="row">
     <div class="col s12 m6 l6">
       <div class="card">
@@ -21,21 +20,21 @@
       </div>
     </div>
     <div class="col s12 m6 l6">
-        <p>INGREDIENTS:</p>
-        <ul>{{#each this.ingredients}}
-            <li>{{this.originalString}}</li>
-            {{/each}}
-        </ul>
+      <p>INGREDIENTS:</p>
+      <ul>{{#each this.ingredients}}
+        <li>{{this.originalString}}</li>
+        {{/each}}
+      </ul>
     </div>
   </div>
 
   <div class="row">
-      <div class="col s12 l12">
+    <div class="col s12 l12">
       <p>INSTRUCTIONS:</p>
-     
+
       <p>{{directions}}</p>
-     
-      </div>
+
+    </div>
   </div>
 </div>
 {{/each}}

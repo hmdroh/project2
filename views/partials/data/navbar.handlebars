@@ -1,25 +1,59 @@
 <nav>
     <div class="nav-wrapper">
-        <a href="/" class="brand-logo"><img src="/assets/img/003-wellness-logo.png"></a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons menu">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="/activities">Activities</a></li>
-                <li>|</li>
-                <li><a href="/eats">Healthy Eating</a></li>
-                <li>|</li>
-                {{#if isLoggedIn}}<li><a href="/favorites">Favorites</a></li>
-                <li>|</li>{{/if}}
-                <li><a href="/signup">Sign-up</a></li>
-                <li>|</li>
-                {{#if isLoggedIn}}<li><a href="/logout">Log out</a></li>{{/if}}{{#unless isLoggedIn}}<li><a href="/login">Login</a></li>{{/unless}}
-            </ul>
-        </div>
-    </nav>
+        <a href="/" class="brand-logo">
+            <img src="/assets/img/003-wellness-logo.png">
+        </a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+            <i class="material-icons menu">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+            <li>
+                <a href="/activities">Activities</a>
+            </li>
+            <li>|</li>
+            <li>
+                <a href="/eats">Healthy Eating</a>
+            </li>
+            <li>|</li>
+            {{#if isLoggedIn}}
+            <li>
+                <a href="/favorites">Favorites</a>
+            </li>
+            <li>|</li>{{/if}}
+            <li>
+                <a href="/signup">Sign-up</a>
+            </li>
+            <li>|</li>
+            {{#if isLoggedIn}}
+            <li>
+                <a href="/logout">Log out</a>
+            </li>{{/if}}{{#unless isLoggedIn}}
+            <li>
+                <a href="/login">Login</a>
+            </li>{{/unless}}
+        </ul>
+    </div>
+</nav>
 
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="/activities">Activities</a></li>
-        <li><a href="/eats">Healthy Eating</a></li>
-        {{#if isLoggedIn}}<li><a href="/favorites">Favorites</a></li>{{/if}}
-        <li><a href="/signup">Sign-up</a></li>
-        {{#if isLoggedIn}}<li><a href="/logged">Log out</a></li>{{/if}}{{#unless isLoggedIn}}<li><a href="/login">Login</a></li>{{/unless}}
-    </ul>
+<ul class="sidenav" id="mobile-demo">
+    <li>
+        <a href="/activities">Activities</a>
+    </li>
+    <li>
+        <a href="/eats">Healthy Eating</a>
+    </li>
+    {{#if isLoggedIn}}
+    <li>
+        <a href="/favorites">Favorites</a>
+    </li>{{/if}}
+    <li>
+        <a href="/signup">Sign-up</a>
+    </li>
+    {{#if isLoggedIn}}
+    <li>
+        <a href="/logged">Log out</a>
+    </li>{{/if}}{{#unless isLoggedIn}}
+    <li>
+        <a href="/login">Login</a>
+    </li>{{/unless}}
+</ul>
