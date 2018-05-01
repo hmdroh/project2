@@ -1,7 +1,6 @@
 <div class="container" id="recipe-body">
 
 
-
 <div class="row">
 {{#each boo}}
     <div class="col s12 m6 l6">
@@ -16,7 +15,7 @@
               <p id="location">{{#if addressFromVenue}}{{venue_address}}{{else}}{{group_address}}{{/if}}</p>
             </div>
             <div class="col l2">
-              <i class="material-icons">favorite_border</i>
+              <a href="/api/fevent/{{id}}/{{group_url}}"><i class="material-icons">{{#if Fav}}favorite{{else}}favorite_border{{/if}}</i></a>
             </div>
           </div>
         </div>

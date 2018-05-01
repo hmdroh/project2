@@ -1,3 +1,71 @@
+<<<<<<< HEAD
+<nav>
+<<<<<<< HEAD
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo">
+      <img src="assets/img/003-wellness-logo.png">
+    </a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+      <i class="material-icons menu">menu</i>
+    </a>
+    <ul class="right hide-on-med-and-down">
+      <li>
+        <a href="/activites">Activities</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a href="/eats">Healthy Eating</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a href="/signup">Sign-up</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a href="/login">Login</a>
+      </li>
+=======
+        <div class="nav-wrapper">
+        <a href="/" class="brand-logo"><img src="/assets/img/003-wellness-logo.png"></a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons menu">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/activities">Activities</a></li>
+                <li>|</li>
+                <li><a href="/eats">Healthy Eating</a></li>
+                <li>|</li>
+                <li><a href="/signup">Sign-up</a></li>
+                <li>|</li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/activities">Activities</a></li>
+        <li><a href="/eats">Healthy Eating</a></li>
+        <li><a href="/signup">Sign-up</a></li>
+        <li><a href="/login">Login</a></li>
+>>>>>>> c68fe10830547603f74fea5d5fdb38a615b03a46
+    </ul>
+  </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li>
+    <a href="/activities">Activities</a>
+  </li>
+  <li>
+    <a href="/eats">Healthy Eating</a>
+  </li>
+  <li>
+    <a href="/signup">Sign-up</a>
+  </li>
+  <li>
+    <a href="/login">Login</a>
+  </li>
+</ul>
+=======
+>>>>>>> 2a1a1135672731279755cb86aa99b67b6691e804
 
     <div class="container">
     <div class="row">
@@ -114,8 +182,66 @@
         {{!-- <br />
         <p>Or log in <a href="/login">here</a></p> --}}
       </div>
-    </div>
 
+      <div class="input-field col s12 m6 l6">
+        <p>Activity Level</p>
+        <select class="activity-level">
+          <option value="" disabled selected></option>
+          <option value="1">1 (Not active)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 (Very active)</option>
+        </select>
+      </div>
 
+      <div class="input-field col s12 m6 l6">
+        <p>Activities, choose all that apply</p>
+        <select multiple class="activities">
+          <option value="walking">Walking</option>
+          <option value="running">Running</option>
+          <option value="hiking">Hiking</option>
+          <option value="biking">Biking</option>
+          <option value="swimming">Swimming</option>
+          <option value="soccer">Yoga</option>
+          <option value="basketball">Martial Arts</option>
+        </select>
+      </div>
 
+      <div class="input-field col s12 m6 l6">
+        <p>Food Restrictions</p>
+        <select multiple class="activities">
+          <option value="basketball">None</option>
+          <optgroup label="Dietary">
+            <option value="gluten-free">Gluten Free</option>
+            <option value="dairy-free">Dairy Free</option>
+            <option value="vegan">Vegan</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="paleo">Paleo</option>
+            <option value="kosher">Kosher</option>
+            {{!--
+            <option value="basketball">None</option> --}}
+          </optgroup>
+          <optgroup label="Allergies">
+            <option value="nuts">Nuts</option>
+            <option value="shellfish">Shellfish</option>
+            <option value="wheat">Wheat</option>
+            <option value="soy">Soy</option>
+            <option value="eggs">Eggs</option>
+            {{!--
+            <option value="basketball">None</option> --}}
+          </optgroup>
+        </select>
+      </div>
 
+      <div class="col s12 m6 l6">
+        <button type="submit" class="btn btn-default">Sign Up</button>
+      </div>
+    </form>
+    {{!--
+    <br />
+    <p>Or log in
+      <a href="/login">here</a>
+    </p> --}}
+  </div>
+</div>
