@@ -105,13 +105,13 @@ ul.dropdown-content.select-dropdown li:not(.disabled) span {
 .text-box {
   z-index: 100;
   position: relative;
-  background-color: #aaaaaa71;
-  color: black;
-  margin-top: 50px;
-  margin-left: 30px;
-  padding-left: 20px;
-  padding: 10px;
-  width: 500px;
+  background-color: #aaaaaa73;
+  color: white;
+  margin-top: 5px;
+  padding-left: 40px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  width: 530px;
 }
 
 .card-image {
@@ -127,8 +127,9 @@ ul.dropdown-content.select-dropdown li:not(.disabled) span {
 }
 
 #home-content {
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
 }
 
 .wrapper {
@@ -139,4 +140,33 @@ ul.dropdown-content.select-dropdown li:not(.disabled) span {
 .map img {
   padding-left: 20px;
   max-width: 500px;
+}
+ 
+form.signup, /* added from other sheet  */
+form.login {
+  margin-top: 50px;
+}
+
+.collage img {
+  max-width: 600px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.text {
+  color: white;
+  text-align: center;
+  padding-top: 100px;
+  font-family: 'Alex Brush', cursive;
+  font-weight: bold;
+}
+
+.brand-name {
+  font-family: 'Alex Brush', cursive;
+  font-size: 85px;
+  color: white;
+  padding-left: 40px;
+  padding-top: 33px;
+  margin-bottom: 5px;
 }
