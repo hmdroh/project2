@@ -54,6 +54,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     zipcode:{
       type: DataTypes.INTEGER
+    },
+    lat:{
+      type: DataTypes.STRING
+    },
+    lng:{
+      type: DataTypes.STRING
     }
     
   });
